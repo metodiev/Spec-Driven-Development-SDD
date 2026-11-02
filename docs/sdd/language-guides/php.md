@@ -61,7 +61,68 @@ flowchart TD
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a PHP project
+
+### 3.1 Verify the toolchain
+
+```bash
+php --version
+composer validate --strict
+composer install --no-interaction
+vendor/bin/phpunit --version
+```
+
+Check `config.platform.php` in `composer.json`. If it is missing, the agent resolves dependencies
+against the local PHP while production runs an older one.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## PHP rules
+- `declare(strict_types=1);` in every file.
+- Native parameter and return types on all new methods; no array soup for domain data.
+- Parameterized queries only; never interpolate into SQL.
+- No `unserialize()` on user-controlled input.
+- Authorization on every new route (is_granted / policy), enforced server-side.
+- Every migration implements `down()`.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: layers, transaction, migration"]
+    B --> C["Tasks: DTO → repository → service → controller"]
+    C --> D["Tests: PHPUnit unit + functional + integration"]
+    D --> E["Verify: phpstan + cs-fixer + phpunit"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Composer metadata and lockfile | `composer validate --strict` |
+| Static analysis | `vendor/bin/phpstan analyse` |
+| Style | `vendor/bin/php-cs-fixer check --diff` |
+| Tests | `vendor/bin/phpunit` |
+| Advisories | `composer audit` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Missing `declare(strict_types=1)` | Add to the review checklist |
+| `composer update` in CI | `composer install` from the lockfile only |
+| Unbounded `fetchAllAssociative` | Stream with generators; specify memory limits |
+| Untested `down()` migration | Definition of done requires it |
+
+---
+
+## 4. Writing requirements
 
 | Universal requirement | PHP addition |
 | --- | --- |
@@ -102,7 +163,7 @@ flowchart TD
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -146,7 +207,7 @@ Doctrine migration `Version20261102`; `down()` drops the index.
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -168,7 +229,7 @@ Doctrine migration `Version20261102`; `down()` drops the index.
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -212,7 +273,7 @@ final class ExportControllerTest extends WebTestCase
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 cat composer.json
@@ -235,7 +296,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -258,7 +319,7 @@ Checklist:
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -282,7 +343,7 @@ composer audit
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -323,7 +384,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -338,7 +399,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -351,7 +412,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -366,7 +427,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - PHP releases — <https://www.php.net/supported-versions.php>
 - PHP manual — <https://www.php.net/manual/en/>

@@ -71,7 +71,66 @@ flowchart TD
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a .NET project
+
+### 3.1 Verify the toolchain
+
+```bash
+dotnet --info                    # confirm the SDK band from global.json
+dotnet restore
+dotnet build -warnaserror --no-restore
+```
+
+Pin the SDK in `global.json` and share `Directory.Build.props`. Without both, the IDE, the agent,
+and CI disagree about nullable and analyzer warnings.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md`, which is the only repository-wide instruction
+file Visual Studio reads — see [chapter 29](../29-ide-setup.md)):
+
+```markdown
+## .NET rules
+- Target the TFM declared in the csproj; never use APIs from a newer target.
+- `Nullable` enabled; no new `!` null-forgiving operator in production code.
+- No `.Result` or `.Wait()`; async all the way.
+- `DbContext` is scoped per request; never captured in a singleton or background service.
+- Integration tests use Testcontainers, not the InMemory provider.
+- Every migration implements `Down` and is reviewed for lock impact.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: DbContext scope, migration, OpenAPI"]
+    B --> C["Tasks: DTO → EF config → migration → repo → endpoint"]
+    C --> D["Tests: WebApplicationFactory + Testcontainers"]
+    D --> E["Verify: build -warnaserror + test + format"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Build with warnings as errors | `dotnet build -warnaserror` |
+| Formatting | `dotnet format --verify-no-changes` |
+| Tests | `dotnet test --no-build` |
+| Vulnerable packages | `dotnet list package --vulnerable --include-transitive` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| InMemory provider used for integration tests | Testcontainers with the real engine |
+| Analyzer set differs between IDE and CI | Share `Directory.Build.props`, pin the SDK |
+| Agent uses an API from `net10.0` in an `net8.0` project | State the TFM in the spec and plan |
+| Migration without `Down` | Definition of done requires it |
+
+---
+
+## 4. Writing requirements
 
 ### 3.1 .NET-specific additions
 
@@ -126,7 +185,7 @@ public sealed record OrderExportRequest(
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -194,7 +253,7 @@ stateDiagram-v2
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -219,7 +278,7 @@ stateDiagram-v2
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -274,7 +333,7 @@ public sealed class ExportEndpointTests : IClassFixture<ApiFactory>
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Solution/project layout
@@ -306,7 +365,7 @@ flowchart LR
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -331,7 +390,7 @@ flowchart LR
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -357,7 +416,7 @@ dotnet list package --vulnerable --include-transitive
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -399,7 +458,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -415,7 +474,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -431,7 +490,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -446,7 +505,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - .NET support policy — <https://dotnet.microsoft.com/platform/support/policy/dotnet-core>
 - .NET releases — <https://dotnet.microsoft.com/download/dotnet>

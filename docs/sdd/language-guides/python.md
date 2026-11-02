@@ -66,7 +66,72 @@ strict = true
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a Python project
+
+### 3.1 Verify the toolchain
+
+```bash
+uv --version                 # or poetry --version / python -m pip --version
+uv sync --frozen --all-groups  # fails if the lockfile is out of date (good)
+uv run pytest -q
+```
+
+Pin `requires-python` in `pyproject.toml` before the first agent task. An unpinned interpreter lets
+the agent use syntax the deployment runtime does not support.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` at the repository root (plus `.github/copilot-instructions.md` for Visual Studio and
+JetBrains — see [chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Python rules
+- Resolve versions from uv.lock / poetry.lock, not from the range in pyproject.toml.
+- No blocking I/O inside `async def`; use an async driver or run in a thread.
+- Every endpoint change needs a TestClient/httpx test asserting status and body.
+- Every query change needs an integration test against the real database.
+- New dependencies require justification; prefer the standard library.
+- Type annotations on public functions; mypy/pyright must pass at the configured level.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: sync/async, session scope, migration"]
+    B --> C["Tasks: schema → repo → service → route"]
+    C --> D["Tests: unit + API + Testcontainers"]
+    D --> E["Verify: pytest + ruff + mypy"]
+    E --> F["Review, then commit"]
+```
+
+1. Spec first, including the async contract and error model.
+2. Plan: session/transaction scope and the Alembic revision.
+3. Implement test-first; keep pure logic in testable modules, not notebooks.
+4. Record evidence, then a read-only review.
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Tests | `uv run pytest -q` |
+| Lint and format | `uv run ruff check .` / `uv run ruff format --check .` |
+| Types | `uv run mypy src` or `uv run pyright` |
+| Security lint | `uv run bandit -r src -q` |
+| Dependencies | `uv run pip-audit` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Agent edits `pyproject.toml` and skips `uv lock` | CI step `uv sync --frozen` fails fast |
+| Sync ORM call inside an async route | State the async boundary in the spec |
+| Tests mock the repository and prove nothing | Integration test with Testcontainers |
+| Two package managers in one repo | One lockfile, one manager |
+
+---
+
+## 4. Writing requirements
 
 ### 3.1 Python-specific additions
 
@@ -115,7 +180,7 @@ Every async requirement must state the blocking budget:
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -163,7 +228,7 @@ Alembic revision `0042_add_export_index`; `downgrade()` drops the index.
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -198,7 +263,7 @@ flowchart LR
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -256,7 +321,7 @@ def test_csv_header_always_present(row_count):
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Environment and resolved versions
@@ -295,7 +360,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -330,7 +395,7 @@ flowchart TD
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -362,7 +427,7 @@ uv run pytest -q
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -410,7 +475,7 @@ jobs:
 
 ---
 
-## 11. Data processing and ML projects
+## 12. Data processing and ML projects
 
 Data and ML work adds three requirement types that ordinary application specs miss: **data
 contracts**, **reproducibility**, and **evaluation**.
@@ -489,7 +554,7 @@ Verification: `pytest -m eval tests/eval/test_ranking.py` records the metric and
 
 ---
 
-## 12. Common mistakes
+## 13. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -505,7 +570,7 @@ Verification: `pytest -m eval tests/eval/test_ranking.py` records the metric and
 
 ---
 
-## 13. Troubleshooting
+## 14. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -521,7 +586,7 @@ Verification: `pytest -m eval tests/eval/test_ranking.py` records the metric and
 
 ---
 
-## 14. Security considerations
+## 15. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -537,7 +602,7 @@ Verification: `pytest -m eval tests/eval/test_ranking.py` records the metric and
 
 ---
 
-## 15. Official references
+## 16. Official references
 
 - Python releases — <https://www.python.org/downloads/>
 - Python support lifecycle (PEP 602/602) — <https://devguide.python.org/versions/>

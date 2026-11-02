@@ -60,7 +60,67 @@ tasks.withType<Test> { useJUnitPlatform() }
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a Kotlin project
+
+### 3.1 Verify the toolchain
+
+```bash
+./gradlew -version
+./gradlew build -x test
+./gradlew test
+```
+
+Pin the Gradle wrapper and the Kotlin/JVM target before adoption. Without them, the agent compiles
+against a different stdlib than the deployment runtime.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Kotlin rules
+- No `!!` in production code; handle the null case.
+- Never swallow `CancellationException`; rethrow it.
+- Blocking work goes on `Dispatchers.IO`, never `Dispatchers.Default`.
+- No `GlobalScope`; use the request scope.
+- New routes are `suspend`; exceptions map to status codes in one place.
+- detekt and ktlint must pass with zero findings.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: suspend boundary, dispatcher, error mapping"]
+    B --> C["Tasks: types → repository → service → route"]
+    C --> D["Tests: runTest + framework harness + Testcontainers"]
+    D --> E["Verify: build + detekt + ktlintCheck"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Build (warnings as errors) | `./gradlew build` |
+| Formatting | `./gradlew ktlintCheck` |
+| Static analysis | `./gradlew detekt` |
+| Tests | `./gradlew test` |
+| Coverage | `./gradlew koverVerify` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| `!!` added to satisfy the compiler | Nullability rules in `AGENTS.md` |
+| Blocking JDBC on `Dispatchers.Default` | Specify the dispatcher in the plan |
+| `GlobalScope.launch` in a route | Structured concurrency rule |
+| detekt baseline silently updated | Review baseline changes like code |
+
+---
+
+## 4. Writing requirements
 
 | Universal requirement | Kotlin addition |
 | --- | --- |
@@ -98,7 +158,7 @@ tasks.withType<Test> { useJUnitPlatform() }
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -142,7 +202,7 @@ flowchart TD
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -165,7 +225,7 @@ flowchart TD
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -209,7 +269,7 @@ class ExportRouteTest {
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 cat build.gradle.kts settings.gradle.kts 2>/dev/null
@@ -232,7 +292,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -255,7 +315,7 @@ Checklist:
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -270,7 +330,7 @@ Checklist:
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -307,7 +367,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -320,7 +380,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -332,7 +392,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -344,7 +404,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Kotlin docs — <https://kotlinlang.org/docs/home.html>
 - Coroutines guide — <https://kotlinlang.org/docs/coroutines-guide.html>

@@ -7,18 +7,36 @@ The SDD **process** is language-independent. What changes per language is:
 3. Which static analysis is mandatory
 4. Which failure modes matter (concurrency, nullability, memory, transactions)
 
-Every guide answers the same eight questions:
+Every guide answers the same eight questions, and adds a stack-specific adoption walkthrough:
 
 | # | Question | Section |
 | --- | --- | --- |
-| 1 | How should requirements be written? | 3 |
-| 2 | How should the technical plan be created? | 4 |
-| 3 | How should tasks be divided? | 5 |
-| 4 | How should tests be specified? | 6 |
-| 5 | How should the agent inspect existing code? | 7 |
-| 6 | How should code review be performed? | 8 |
-| 7 | Which static analysis tools are mandatory? | 9 |
-| 8 | How should CI verify compliance? | 10 |
+| 1 | How do I install and verify this stack for SDD? | 3 |
+| 2 | How should requirements be written? | 4 |
+| 3 | How should the technical plan be created? | 5 |
+| 4 | How should tasks be divided? | 6 |
+| 5 | How should tests be specified? | 7 |
+| 6 | How should the agent inspect existing code? | 8 |
+| 7 | How should code review be performed? | 9 |
+| 8 | Which static analysis tools are mandatory? | 10 |
+| 9 | How should CI verify compliance? | 11 |
+
+> Section numbers are stable per guide, except Python where the data/ML section is inserted after
+> CI verification. Use the headings, not the numbers, when linking.
+
+## What each guide gives you for adoption
+
+```mermaid
+flowchart LR
+    subgraph Section3["§3 — Adopting SDD here"]
+        A1["Verify the toolchain"]
+        A2["Agent rules for this stack"]
+        A3["First change, step by step"]
+        A4["Verification commands"]
+        A5["Adoption pitfalls"]
+    end
+    Section3 --> Ready["Ready to run one real change"]
+```
 
 ```mermaid
 flowchart LR

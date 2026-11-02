@@ -83,7 +83,75 @@ gantt
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD for database changes
+
+There is no runtime to install. What must be installed and verified is the **migration tool** and a
+**production-like database** to measure against.
+
+### 3.1 Verify the toolchain
+
+```bash
+# Whichever the project uses
+flyway -url="$DATABASE_URL" info          # Flyway
+liquibase status                          # Liquibase
+alembic current                           # Alembic
+dotnet ef migrations list                 # EF Core
+
+# A production-sized copy for lock and plan measurements
+psql "$STAGING_DATABASE_URL" -c "SELECT pg_size_pretty(pg_total_relation_size('orders'));"
+```
+
+Never measure locking behavior on an empty local database. An index that takes 40 ms on 1,000 rows
+can take 40 minutes of blocked writes on 50 million.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` if your project uses Copilot in any IDE — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Database rules
+- Separate DDL from data backfill; never rewrite a large table in one migration.
+- New indexes on hot tables use CONCURRENTLY (outside a transaction).
+- Never add NOT NULL to an existing column without a completed backfill.
+- Renames and drops follow expand/contract with a deprecation window.
+- Every migration has a tested down() or a documented forward-fix.
+- Record EXPLAIN (ANALYZE, BUFFERS) evidence for every query the change depends on.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: compatibility + lock budget"] --> B["Plan: expand → backfill → contract"]
+    B --> C["Tasks: DDL → backfill → code switch → drop"]
+    C --> D["Tests: up/down, constraints, plans"]
+    D --> E["Verify on a production-sized copy"]
+    E --> F["Review with lock analysis, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Migration applies | `flyway migrate` / `alembic upgrade head` |
+| Migration reverses | project migration test, `alembic downgrade -1`, or documented forward-fix |
+| Query uses the index | `EXPLAIN (ANALYZE, BUFFERS)` |
+| Dangerous patterns | `squawk migrations/*.sql` (if adopted) |
+| Constraints hold | constraint-violation tests |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Testing only on an empty database | Use a production-sized copy in staging |
+| `CREATE INDEX` without `CONCURRENTLY` | Review checklist item |
+| Backfill without batching | `LIMIT` + `FOR UPDATE SKIP LOCKED` |
+| No rollback plan | Spec section 11 must be filled in |
+
+---
+
+## 4. Writing requirements
 
 | Universal requirement | SQL addition |
 | --- | --- |
@@ -122,7 +190,7 @@ gantt
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -186,7 +254,7 @@ sequenceDiagram
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -209,7 +277,7 @@ sequenceDiagram
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -245,7 +313,7 @@ LIMIT 1000;
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Migration tool and history
@@ -279,7 +347,7 @@ Checklist:
 
 ---
 
-## 8. Review focus
+## 9. Review focus
 
 | Area | Question |
 | --- | --- |
@@ -302,7 +370,7 @@ Checklist:
 
 ---
 
-## 9. Tooling and verification
+## 10. Tooling and verification
 
 | Tool | Purpose |
 | --- | --- |
@@ -329,7 +397,7 @@ squawk migrations/V42__add_index.sql
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -352,7 +420,7 @@ flowchart LR
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -367,7 +435,7 @@ flowchart LR
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -380,7 +448,7 @@ flowchart LR
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -393,7 +461,7 @@ flowchart LR
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - PostgreSQL `EXPLAIN` — <https://www.postgresql.org/docs/current/sql-explain.html>
 - PostgreSQL `CREATE INDEX` — <https://www.postgresql.org/docs/current/sql-createindex.html>

@@ -70,7 +70,77 @@ flowchart LR
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD for infrastructure changes
+
+Infrastructure has the largest blast radius of any change. The "install" step is verifying that the
+tooling can plan and validate **without applying**.
+
+### 3.1 Verify the toolchain
+
+```bash
+terraform version
+terraform fmt -check -recursive
+terraform init -backend=false          # validate without touching state
+terraform validate
+
+ansible --version
+ansible-lint --version
+
+kubectl version --client
+kubeconform -v
+```
+
+> `terraform init -backend=false` is the read-only setup step. Do not run a real `init` or `plan`
+> against a production backend during discovery.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` if the team uses Copilot — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Infrastructure rules
+- Never run `terraform apply`, `kubectl apply`, or `ansible-playbook` without explicit approval.
+- Plan first; report every `-/+` (replacement) and justify it.
+- No secrets in code, variables files, or committed state.
+- No wildcard IAM actions or resources.
+- No public ingress to a data store.
+- Stateful resources require a migration/restore plan before replacement.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: env, RTO/RPO, blast radius, approval"] --> B["Plan: resource graph, state, rollback"]
+    B --> C["Tasks: variables → resources → policy tests"]
+    C --> D["Validate: fmt + validate + policy scan"]
+    D --> E["Plan reviewed by a human"]
+    E --> F["Approved apply (separate step)"]
+```
+
+### 3.4 Verification commands
+
+| Target | Commands |
+| --- | --- |
+| Terraform | `terraform fmt -check -recursive`, `terraform validate`, `terraform plan -out=tfplan` |
+| Policy | `checkov -d .`, `trivy config .`, `conftest test tfplan.json` |
+| Ansible | `ansible-lint`, `ansible-playbook site.yml --check --diff` |
+| Kubernetes | `kubectl diff -f manifests/`, `kubeconform -strict -summary manifests/`, `kube-linter lint manifests/` |
+| Helm | `helm lint charts/<name>`, `helm template ... \| kubeconform` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Agent runs `apply -auto-approve` | State the prohibition in `AGENTS.md`; scope CI credentials |
+| Plan output ignored | Require plan review in the PR |
+| Local state | Remote backend with locking |
+| Secrets in `.tfvars` | Secret manager + `sensitive = true` |
+
+---
+
+## 4. Writing requirements
 
 ### 3.1 Terraform
 
@@ -125,7 +195,7 @@ flowchart LR
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -158,7 +228,7 @@ flowchart LR
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -180,7 +250,7 @@ flowchart LR
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -229,7 +299,7 @@ helm template charts/orders | kubeconform -strict -summary
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Terraform
@@ -265,7 +335,7 @@ Checklist:
 
 ---
 
-## 8. Review focus
+## 9. Review focus
 
 | Area | Question |
 | --- | --- |
@@ -290,7 +360,7 @@ Checklist:
 
 ---
 
-## 9. Tooling
+## 10. Tooling
 
 | Tool | Purpose |
 | --- | --- |
@@ -310,7 +380,7 @@ Checklist:
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -354,7 +424,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -369,7 +439,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -383,7 +453,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -397,7 +467,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Terraform docs — <https://developer.hashicorp.com/terraform/docs>
 - OpenTofu — <https://opentofu.org/docs/>

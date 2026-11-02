@@ -56,7 +56,69 @@ toolchain go1.27.3
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a Go project
+
+### 3.1 Verify the toolchain
+
+```bash
+go version
+go mod tidy -diff     # prints a diff instead of modifying: perfect for a read-only check
+go build ./...
+go test ./...
+```
+
+`go mod tidy -diff` is the read-only form. Never let the agent run plain `go mod tidy` during
+discovery.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Go rules
+- Do not bump the `go` directive without an explicit decision; it changes semantics module-wide.
+- Propagate `ctx` as the first parameter; no `context.Background()` in request paths.
+- Wrap errors with `%w` and map them to HTTP in one place.
+- Every goroutine has a documented owner and exit path; no unbounded starts.
+- Table-driven tests; `go test -race ./...` must pass.
+- Integration tests use a real dependency (Testcontainers), not a mock of the store.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: context, error mapping, concurrency bounds"]
+    B --> C["Tasks: types → store → service → handler"]
+    C --> D["Tests: table tests + httptest + integration"]
+    D --> E["Verify: vet + race + govulncheck"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Formatting | `gofmt -l .` (must be empty) |
+| Vet | `go vet ./...` |
+| Lint | `staticcheck ./...` or `golangci-lint run` |
+| Tests with race detector | `go test -race ./...` |
+| Vulnerabilities | `govulncheck ./...` |
+| Module tidiness | `go mod tidy -diff` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Agent runs `go get` and changes `go.mod` silently | Review manifest diffs; `go mod tidy -diff` in CI |
+| Goroutine started per request with no bound | Specify bounded concurrency in the plan |
+| `rows.Err()` ignored | Review checklist item |
+| Interfaces designed before a second implementation exists | Define interfaces at the consumer |
+
+---
+
+## 4. Writing requirements
 
 | Universal requirement | Go addition |
 | --- | --- |
@@ -96,7 +158,7 @@ toolchain go1.27.3
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -139,7 +201,7 @@ flowchart TD
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -163,7 +225,7 @@ flowchart TD
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -228,7 +290,7 @@ func FuzzParseFilter(f *testing.F) {
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 cat go.mod
@@ -262,7 +324,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -286,7 +348,7 @@ Checklist:
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -316,7 +378,7 @@ govulncheck ./...
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -360,7 +422,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -375,7 +437,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -389,7 +451,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -403,7 +465,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Go releases — <https://go.dev/doc/devel/release>
 - Go modules reference — <https://go.dev/ref/mod>

@@ -80,7 +80,73 @@ java {
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a Java project
+
+### 3.1 Verify the toolchain before writing anything
+
+```bash
+java -version                 # must satisfy the release level in the spec
+./mvnw -version               # or ./gradlew -version — use the wrapper, never a global install
+./mvnw -q verify -DskipTests  # resolves every plugin the agent will rely on
+```
+
+If the repository has no wrapper, add one first (`mvn wrapper:wrapper` or `gradle wrapper`) and
+commit it. An unpinned wrapper means the agent and CI compile with different plugin versions.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` at the repository root (and `.github/copilot-instructions.md` for Visual Studio and
+JetBrains — see [chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Java rules
+- Compile with the pinned `release` level; never use APIs newer than it.
+- Read resolved versions with `./mvnw dependency:tree` before using a framework API.
+- Every endpoint change needs a MockMvc or `@WebMvcTest` assertion on status and body.
+- Every query change needs an integration test with Testcontainers, not H2.
+- No new dependency without an ADR in `docs/adr/`.
+- Migrations are versioned, reversible, and use CONCURRENTLY for indexes on hot tables.
+```
+
+### 3.3 Your first SDD change (a new endpoint)
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: transaction, contract, migration"]
+    B --> C["Tasks: contract → migration → repo → service → controller"]
+    C --> D["Tests first: MockMvc + Testcontainers"]
+    D --> E["Verify: ./mvnw -q verify"]
+    E --> F["Review the diff, then commit"]
+```
+
+1. Write `specs/<id>/spec.md` using [`templates/feature-spec.md`](../templates/feature-spec.md).
+2. Write `plan.md` covering transaction boundaries, the OpenAPI change, and the migration.
+3. Break it into tasks that each name a requirement ID.
+4. Implement test-first: slice test for the web layer, Testcontainers for the query.
+5. Record evidence per acceptance criterion, then review (read-only) before committing.
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Compile with the pinned release | `./mvnw -q compile` |
+| Unit tests | `./mvnw -q test` |
+| Integration tests | `./mvnw -q verify` |
+| Static analysis | `./mvnw -q spotbugs:check checkstyle:check pmd:check` |
+| Dependencies | `./mvnw -q dependency-check:check` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Agent compiles with the local JDK instead of `release` | Pin `maven.compiler.release` or the Gradle toolchain |
+| Tests use H2 and pass while production fails | Testcontainers with the same engine and version |
+| Agent adds a library for one utility | Check the JDK and existing dependencies first |
+| `@Transactional` wrapped around a network call | Specify transaction boundaries in the plan |
+
+---
+
+## 4. Writing requirements
 
 ### 3.1 What Java requirements must add
 
@@ -129,7 +195,7 @@ the authenticated principal may read.
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -206,7 +272,7 @@ sequenceDiagram
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task type | Size guide | Parallelizable |
 | --- | --- | --- |
@@ -244,7 +310,7 @@ flowchart LR
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -310,7 +376,7 @@ class OrderExportIT {
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Build system and versions
@@ -350,7 +416,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Questions |
 | --- | --- |
@@ -384,7 +450,7 @@ flowchart TD
 
 ---
 
-## 9. Static analysis and verification tools
+## 10. Static analysis and verification tools
 
 | Tool | Purpose | Typical invocation |
 | --- | --- | --- |
@@ -430,7 +496,7 @@ flowchart TD
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -476,7 +542,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -492,7 +558,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -507,7 +573,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -522,7 +588,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Java SE releases — <https://www.oracle.com/java/technologies/java-se-support-roadmap.html>
 - Adoptium/Temurin — <https://adoptium.net/>

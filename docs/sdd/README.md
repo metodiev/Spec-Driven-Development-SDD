@@ -76,10 +76,11 @@ flowchart TD
 | Track | Chapters | Time |
 | --- | --- | --- |
 | **Decision maker** — pick a framework, set policy | 01, 02, 04, 22, 26 | ~2 h |
-| **Engineer adopting SDD** — full loop on a real feature | 01–04, 12, 14, 20 | ~4 h |
+| **Engineer adopting SDD** — full loop on a real feature | 01–04, 12, 14, 20, 30 | ~5 h |
+| **First-day setup** — get the IDE and rules working | 12, 22, 23, 29 | ~1.5 h |
 | **Platform / DevOps** — gates, CI, enforcement | 02, 12, 20, 22, 24, 25 | ~3 h |
 | **Reviewer** — read-only review and evidence | 17–21, 23 | ~2.5 h |
-| **Language specialist** — pick your guide | 01, 02, 13 + your language file | ~2 h |
+| **Language specialist** — pick your guide | 01, 02, 03 + your language guide §3 | ~2 h |
 
 ---
 
@@ -120,6 +121,9 @@ flowchart TD
 [SQL](./language-guides/sql.md) ·
 [Infrastructure as Code](./language-guides/infrastructure-as-code.md)
 
+Each guide starts with a **§3 "Adopting SDD in this stack"** walkthrough: toolchain verification,
+agent rules, a first change step by step, verification commands, and adoption pitfalls.
+
 ### Workflows
 
 | Chapter | Purpose |
@@ -139,6 +143,13 @@ flowchart TD
 | [26 Enterprise reference workflow](./26-enterprise-reference-workflow.md) | Regulated, multi-team, brownfield adoption |
 | [27 Troubleshooting](./27-troubleshooting.md) | Symptom → cause → fix for adoption problems |
 | [28 Glossary](./28-glossary.md) | Canonical vocabulary used across all chapters |
+
+### Setup and practice
+
+| Chapter | Purpose |
+| --- | --- |
+| [29 IDE setup](./29-ide-setup.md) | IntelliJ IDEA, VS Code, Visual Studio: what to install, what to write, what to commit |
+| [30 End-to-end walkthrough](./30-end-to-end-walkthrough.md) | One Jira ticket ("add an endpoint") through the entire cycle, artifact by artifact |
 
 ### Reusable assets
 
@@ -256,8 +267,8 @@ Checks actually executed on **2026-11-02** against this working tree. Re-run the
 | --- | --- | --- |
 | Links, anchors, fences, table columns, JSON, YAML, Mermaid structure | `python3 docs/sdd/tools/validate_docs.py` | 0 errors, 0 warnings |
 | YAML full parse (PyYAML 6.0.3) | same command inside a venv with `pyyaml` | 0 errors |
-| Mermaid parse (mermaid 11.17.2 via jsdom) | `node docs/sdd/tools/check_mermaid.mjs docs/sdd <modules>` | 294/294 parsed (295 including the root README) |
-| JSON examples | included in `validate_docs.py` | 4/4 parsed |
+| Mermaid parse (mermaid 11.17.2 via jsdom) | `node docs/sdd/tools/check_mermaid.mjs docs/sdd <modules>` | 337/337 parsed (362 including the root README) |
+| JSON examples | included in `validate_docs.py` | 9/9 parsed |
 
 **Known limitations of this validation:**
 

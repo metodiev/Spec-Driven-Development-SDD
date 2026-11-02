@@ -63,7 +63,68 @@ serde = { version = "1", features = ["derive"] }
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a Rust project
+
+### 3.1 Verify the toolchain
+
+```bash
+rustc --version
+cargo --version
+cargo build --workspace --all-targets
+```
+
+Confirm `rust-version` (MSRV) and `edition` in `Cargo.toml` before the first task. An agent using
+an API above the MSRV breaks downstream builds that CI may not catch.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## Rust rules
+- Respect `rust-version` (MSRV); no APIs above it.
+- No `unwrap()`/`expect()` on user or network input; return `Result`.
+- Any `unsafe` block needs a `// SAFETY:` comment and a test covering the invariant.
+- No blocking I/O inside async; use async I/O or `spawn_blocking`.
+- Do not introduce `Arc<Mutex<_>>` to avoid thinking about ownership.
+- Public API changes must pass `cargo semver-checks`.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: ownership, error variants, MSRV"]
+    B --> C["Tasks: types → error → data → handler"]
+    C --> D["Tests: unit + proptest + integration"]
+    D --> E["Verify: fmt + clippy -D warnings + test"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Formatting | `cargo fmt --all --check` |
+| Lints as errors | `cargo clippy --workspace --all-targets -- -D warnings` |
+| Tests | `cargo test --workspace` |
+| Undefined behavior in unsafe | `cargo +nightly miri test` |
+| Advisories and licenses | `cargo audit` / `cargo deny check` |
+| Public API compatibility | `cargo semver-checks check-release` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Agent uses an API newer than the MSRV | CI job pinned to the MSRV |
+| `unwrap()` reaches production | Panic policy stated in the spec |
+| Unsafe added without justification | Safety comment + review gate |
+| New default feature bloats consumers | Make features opt-in |
+
+---
+
+## 4. Writing requirements
 
 | Universal requirement | Rust addition |
 | --- | --- |
@@ -103,7 +164,7 @@ serde = { version = "1", features = ["derive"] }
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -150,7 +211,7 @@ flowchart TD
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -174,7 +235,7 @@ flowchart TD
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -232,7 +293,7 @@ proptest! {
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 cat Cargo.toml
@@ -266,7 +327,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -290,7 +351,7 @@ Checklist:
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -317,7 +378,7 @@ cargo build --workspace --all-targets
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -357,7 +418,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -371,7 +432,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -385,7 +446,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -399,7 +460,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Rust releases — <https://blog.rust-lang.org/>
 - The Rust Book — <https://doc.rust-lang.org/book/>

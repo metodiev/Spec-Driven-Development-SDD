@@ -342,4 +342,5 @@ mindmap
 ---
 
 **Previous:** [27 — Troubleshooting](./27-troubleshooting.md) ·
+**Next:** [29 — IDE setup](./29-ide-setup.md) ·
 **Back to index:** [README](./README.md)

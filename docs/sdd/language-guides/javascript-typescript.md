@@ -67,7 +67,69 @@ flowchart TD
 
 ---
 
-## 3. Writing requirements
+## 3. Adopting SDD in a JavaScript / TypeScript project
+
+### 3.1 Verify the toolchain
+
+```bash
+node --version
+pnpm --version                    # or npm / yarn — exactly one
+pnpm install --frozen-lockfile    # fails when the lockfile is out of date (good)
+pnpm run typecheck
+```
+
+If the repository has more than one lockfile, stop and report it. Two package managers produce two
+dependency graphs, and the agent will read the wrong one.
+
+### 3.2 Add the agent rules
+
+`AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
+[chapter 29](../29-ide-setup.md)):
+
+```markdown
+## TypeScript rules
+- `strict` is on; no new `any` without a comment explaining why.
+- Authorization is enforced server-side; UI checks are UX only.
+- Every component behavior change needs a Testing Library test using role/name queries.
+- Every API route change needs a handler test with a mocked session.
+- No dependency for something the platform provides.
+- Bundle budget per route group is enforced in CI.
+```
+
+### 3.3 Your first SDD change
+
+```mermaid
+flowchart LR
+    A["Spec: FR/NFR/AC"] --> B["Plan: server/client boundary, error model, budget"]
+    B --> C["Tasks: schema → API → hook → component → E2E"]
+    C --> D["Tests: Vitest + Testing Library + Playwright"]
+    D --> E["Verify: typecheck + lint + test + build"]
+    E --> F["Review, then commit"]
+```
+
+### 3.4 Verification commands
+
+| Check | Command |
+| --- | --- |
+| Types | `pnpm run typecheck` |
+| Lint and format | `pnpm run lint` / `pnpm exec prettier --check .` |
+| Unit and component tests | `pnpm run test` |
+| Build and bundle budget | `pnpm run build` |
+| E2E | `pnpm exec playwright test` |
+| Dependencies | `pnpm audit --prod` |
+
+### 3.5 Adoption pitfalls
+
+| Pitfall | Fix |
+| --- | --- |
+| Authorization implemented in the UI only | State server-side enforcement in the spec |
+| `any` added to silence the compiler | `unknown` + narrowing, or fix the type |
+| Snapshot tests as the only coverage | Assert roles, text, and network behavior |
+| Unpinned Playwright browsers | Pin the version and cache in CI |
+
+---
+
+## 4. Writing requirements
 
 ### 3.1 TypeScript-specific additions
 
@@ -111,7 +173,7 @@ flowchart TD
 
 ---
 
-## 4. Technical plan
+## 5. Technical plan
 
 ```mermaid
 flowchart TD
@@ -166,7 +228,7 @@ Route group budget: +15 kB gzip. Measured by the existing bundle analyzer in CI.
 
 ---
 
-## 5. Task division
+## 6. Task division
 
 | Task | Files | Parallelizable |
 | --- | --- | --- |
@@ -201,7 +263,7 @@ flowchart LR
 
 ---
 
-## 6. Specifying tests
+## 7. Specifying tests
 
 ```mermaid
 flowchart TB
@@ -265,7 +327,7 @@ test("AC-7.2: user without role sees Forbidden and no data request", async ({ pa
 
 ---
 
-## 7. How the agent inspects existing code
+## 8. How the agent inspects existing code
 
 ```bash
 # Package manager and versions
@@ -305,7 +367,7 @@ Checklist:
 
 ---
 
-## 8. Code review focus
+## 9. Code review focus
 
 | Area | Question |
 | --- | --- |
@@ -330,7 +392,7 @@ Checklist:
 
 ---
 
-## 9. Static analysis and tooling
+## 10. Static analysis and tooling
 
 | Tool | Purpose | Invocation |
 | --- | --- | --- |
@@ -357,7 +419,7 @@ pnpm audit --prod
 
 ---
 
-## 10. CI verification
+## 11. CI verification
 
 ```mermaid
 flowchart LR
@@ -404,7 +466,7 @@ jobs:
 
 ---
 
-## 11. Common mistakes
+## 12. Common mistakes
 
 | Mistake | Consequence | Fix |
 | --- | --- | --- |
@@ -421,7 +483,7 @@ jobs:
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Cause | Action |
 | --- | --- | --- |
@@ -436,7 +498,7 @@ jobs:
 
 ---
 
-## 13. Security considerations
+## 14. Security considerations
 
 | Risk | Control |
 | --- | --- |
@@ -451,7 +513,7 @@ jobs:
 
 ---
 
-## 14. Official references
+## 15. Official references
 
 - Node.js releases — <https://nodejs.org/en/about/previous-releases>
 - Node.js support — <https://github.com/nodejs/Release>
