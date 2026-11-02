@@ -71,7 +71,9 @@ flowchart TD
     F --> G["13 Language guides<br/>what changes per stack"]
     G --> H["14–25 Workflows<br/>feature, bug, refactor, review, verify, security, git, CI"]
     H --> I["26–28 Operations<br/>enterprise workflow, troubleshooting, glossary"]
-    I --> J["templates/ and prompts/<br/>reusable artifacts"]
+    I --> K["29–35 IDE setup, walkthrough, examples, Confluence"]
+    K --> L["36–37 Agent prompts &amp; anti-hallucination"]
+    L --> J["templates/ and prompts/<br/>reusable artifacts"]
 ```
 
 ### Reading tracks
@@ -85,6 +87,7 @@ flowchart TD
 | **Reviewer** — read-only review and evidence | 17–21, 23 | ~2.5 h |
 | **Language specialist** — pick your guide | 01, 02, 03 + your language guide §3 | ~2 h |
 | **Stakeholder reporting** — publish to a wiki | 20, 23, 35 | ~1.5 h |
+| **Agent operator** — drive plan/implement/verify safely | 23, 36, 37 | ~2.5 h |
 
 ---
 
@@ -125,6 +128,10 @@ flowchart TD
 [SQL](../language-guides/sql.md) ·
 [Infrastructure as Code](../language-guides/infrastructure-as-code.md)
 
+Ten guides, one per stack. They are the handbook's **chapter 13** and live outside this directory
+so each can be linked and versioned on its own; the folder index is
+[language-guides/README.md](../language-guides/README.md).
+
 Each guide starts with a **§3 "Adopting SDD in this stack"** walkthrough: toolchain verification,
 agent rules, a first change step by step, verification commands, and adoption pitfalls.
 
@@ -159,6 +166,8 @@ agent rules, a first change step by step, verification commands, and adoption pi
 | [33 End-to-end walkthrough](./33-end-to-end-walkthrough.md) | One Jira ticket ("add an endpoint") through the entire cycle, artifact by artifact |
 | [34 Simple project examples](./34-simple-project-examples.md) | The same small feature implemented six ways, from manual to Spec Kitty |
 | [35 Confluence publishing](./35-confluence-publishing.md) | Mirror, index, or excerpt; REST API, conversion, Mermaid, CI publishing |
+| [36 Agent prompt playbook](./36-agent-prompt-playbook.md) | What to say for plan / implement / verify; prompts, gates, correction phrases |
+| [37 Escaping hallucination](./37-agent-anti-hallucination.md) | Agent operating manual: five gates, refusal scripts, recovery, red flags |
 
 ### Reusable assets
 
@@ -274,15 +283,20 @@ Checks actually executed on **2026-11-02** against this working tree. Re-run the
 
 | Check | Command | Result |
 | --- | --- | --- |
-| Links, anchors, fences, table columns, JSON, YAML, Mermaid structure | `python3 tools/validate_docs.py` | 0 errors, 0 warnings |
-| YAML full parse (PyYAML 6.0.3) | same command inside a venv with `pyyaml` | 0 errors |
-| Mermaid parse (mermaid 11.17.2 via jsdom) | `node tools/check_mermaid.mjs . <modules>` | 399/399 parsed |
+| Links, anchors, fences, table columns, JSON, YAML, front matter, Mermaid structure | `python3 tools/validate_docs.py` | 0 errors, 0 warnings |
+| YAML full parse (PyYAML) — 12 fenced blocks, 18 front-matter blocks | same command inside a venv with `pyyaml` | 0 errors |
+| Mermaid parse (mermaid 11.17.2 via jsdom) | `node tools/check_mermaid.mjs . <modules>` | 422/422 parsed |
 | JSON examples | included in `validate_docs.py` | 12/12 parsed |
+| External URLs | every unique URL fetched with `curl -L` | 285/285 resolve (0 dead) |
+
+Scope of that run: **85 Markdown files, 588 relative links, 829 code fences, 422 Mermaid
+diagrams, 18 YAML front-matter blocks.** Re-run the two commands above after any edit; the counts
+change with the content.
 
 **Known limitations of this validation:**
 
-- External URLs were **not** fetched. Link targets inside this repository were checked; external
-  links were verified manually during research (see [chapter 04](./04-tool-comparison.md)).
+- External URLs were fetched over the network on the date above. A link can die after that date,
+  and a 200 does not prove the page still says what this handbook claims it says.
 - Diagram **rendering** (layout, overflow, theme) was not visually inspected; only parser
   acceptance was verified.
 - Tool commands were verified against official documentation, not executed against a target

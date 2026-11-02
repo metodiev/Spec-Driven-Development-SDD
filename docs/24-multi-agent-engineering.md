@@ -347,4 +347,5 @@ flowchart TD
 ---
 
 **Previous:** [23 — Hallucination prevention](./23-hallucination-prevention.md) ·
-**Next:** [25 — CI/CD integration](./25-ci-cd-integration.md)
+**Next:** [25 — CI/CD integration](./25-ci-cd-integration.md) ·
+**Back to index:** [00-index.md](00-index.md)

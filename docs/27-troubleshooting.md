@@ -280,4 +280,5 @@ python3 tools/validate_docs.py
 ---
 
 **Previous:** [26 — Enterprise reference workflow](./26-enterprise-reference-workflow.md) ·
-**Next:** [28 — Glossary](./28-glossary.md)
+**Next:** [28 — Glossary](./28-glossary.md) ·
+**Back to index:** [00-index.md](00-index.md)

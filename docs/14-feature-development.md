@@ -379,4 +379,5 @@ Completion report with per-AC status. Never mark complete with `UNVERIFIED` crit
 ---
 
 **Previous:** [13 — Language guides](../language-guides/README.md) ·
-**Next:** [15 — Bug fixing](./15-bug-fixing.md)
+**Next:** [15 — Bug fixing](./15-bug-fixing.md) ·
+**Back to index:** [00-index.md](00-index.md)

@@ -7,7 +7,8 @@ Checks performed
 2. Relative Markdown links resolve to an existing file or directory.
 3. In-page anchors (#fragment) and cross-file anchors exist.
 4. Fenced ``json`` blocks parse as JSON.
-5. Fenced ``yaml`` blocks pass structural checks (full parse when PyYAML is installed).
+5. Fenced ``yaml`` blocks and leading ``---`` front matter pass structural checks
+   (full parse when PyYAML is installed).
 6. Mermaid blocks start with a known diagram type and are structurally balanced.
 
 Usage
@@ -106,6 +107,7 @@ class Report:
     links: int = 0
     json_blocks: int = 0
     yaml_blocks: int = 0
+    front_matter: int = 0
     mermaid_blocks: int = 0
     problems: list[Problem] = field(default_factory=list)
 
@@ -343,6 +345,31 @@ def check_mermaid(text: str) -> list[str]:
     return issues
 
 
+def check_front_matter(text: str, rel: str, report: Report) -> None:
+    """Validate a leading ``---`` YAML front-matter block, if present."""
+    if not text.startswith("---\n"):
+        return
+    end = text.find("\n---\n", 3)
+    if end == -1:
+        report.error(rel, 1, "front-matter", "front matter opened but never closed with ---")
+        return
+    body = text[4 : end + 1]
+    report.front_matter += 1
+    if yaml is not None:
+        try:
+            data = yaml.safe_load(body)
+        except Exception as exc:  # noqa: BLE001
+            report.error(rel, 1, "front-matter", f"invalid YAML: {exc}")
+            return
+        if data is None:
+            report.warn(rel, 1, "front-matter", "front matter block is empty")
+        elif not isinstance(data, dict):
+            report.error(rel, 1, "front-matter", "front matter is not a key/value mapping")
+    else:
+        for issue in check_yaml_structure(body):
+            report.warn(rel, 1, "front-matter", issue)
+
+
 def validate_file(path: Path, root: Path, report: Report) -> None:
     text = path.read_text(encoding="utf-8")
     lines = text.splitlines()
@@ -353,6 +380,8 @@ def validate_file(path: Path, root: Path, report: Report) -> None:
     info = ""
     buffer: list[str] = []
     start_line = 0
+
+    check_front_matter(text, rel, report)
 
     for number, raw in enumerate(lines, start=1):
         match = FENCE_RE.match(raw)
@@ -431,6 +460,7 @@ def main(argv: list[str] | None = None) -> int:
             "links": report.links,
             "json_blocks": report.json_blocks,
             "yaml_blocks": report.yaml_blocks,
+            "front_matter": report.front_matter,
             "mermaid_blocks": report.mermaid_blocks,
             "errors": len(report.errors),
             "warnings": len(report.warnings),
@@ -452,7 +482,8 @@ def main(argv: list[str] | None = None) -> int:
         print()
         print(
             f"files={report.files} fences={report.fences} links={report.links} "
-            f"json={report.json_blocks} yaml={report.yaml_blocks} mermaid={report.mermaid_blocks}"
+            f"json={report.json_blocks} yaml={report.yaml_blocks} "
+            f"front_matter={report.front_matter} mermaid={report.mermaid_blocks}"
         )
         print(f"errors={len(report.errors)} warnings={len(report.warnings)}")
         if yaml is None:

@@ -410,14 +410,15 @@ jobs:
 - Coroutines guide — <https://kotlinlang.org/docs/coroutines-guide.html>
 - Gradle Kotlin DSL — <https://docs.gradle.org/current/userguide/kotlin_dsl.html>
 - Ktor — <https://ktor.io/docs/>
-- Spring Boot with Kotlin — <https://docs.spring.io/spring-boot/reference/kotlin/index.html>
+- Spring Boot Kotlin support — <https://docs.spring.io/spring-boot/reference/features/kotlin.html>
 - JUnit 5 — <https://junit.org/junit5/docs/current/user-guide/>
 - Kotest — <https://kotest.io/docs/>
 - detekt — <https://detekt.dev/>
-- ktlint — <https://pinterest.github.io/ktlint/>
+- ktlint — <https://ktlint.github.io/>
 - Kover — <https://kotlin.github.io/kotlinx-kover/>
 
 ---
 
 **Previous:** [Rust](./rust.md) ·
-**Next:** [PHP](./php.md)
+**Next:** [PHP](./php.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

@@ -377,4 +377,5 @@ version under your own name so updates do not silently overwrite it.
 ---
 
 **Previous:** [09 — Spec Kitty](./09-spec-kitty.md) ·
-**Next:** [11 — Superpowers](./11-superpowers.md)
+**Next:** [11 — Superpowers](./11-superpowers.md) ·
+**Back to index:** [00-index.md](00-index.md)

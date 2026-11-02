@@ -340,4 +340,5 @@ flowchart TB
 ---
 
 **Previous:** [15 — Bug fixing](./15-bug-fixing.md) ·
-**Next:** [17 — Specification review](./17-specification-review.md)
+**Next:** [17 — Specification review](./17-specification-review.md) ·
+**Back to index:** [00-index.md](00-index.md)

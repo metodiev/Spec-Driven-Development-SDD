@@ -479,4 +479,5 @@ jobs:
 ---
 
 **Previous:** [Go](./go.md) ·
-**Next:** [Kotlin](./kotlin.md)
+**Next:** [Kotlin](./kotlin.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

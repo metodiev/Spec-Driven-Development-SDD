@@ -543,4 +543,5 @@ Tool workflow files are regenerated; do not hand-edit them.
 ---
 
 **Previous:** [05 — GitHub Spec Kit](./05-github-spec-kit.md) ·
-**Next:** [07 — AWS Kiro](./07-aws-kiro.md)
+**Next:** [07 — AWS Kiro](./07-aws-kiro.md) ·
+**Back to index:** [00-index.md](00-index.md)

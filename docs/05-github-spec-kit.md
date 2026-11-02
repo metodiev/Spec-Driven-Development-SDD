@@ -503,4 +503,5 @@ command/skill files are replaced on upgrade, which is exactly why upstream says 
 ---
 
 **Previous:** [04 — Tool comparison](./04-tool-comparison.md) ·
-**Next:** [06 — OpenSpec](./06-openspec.md)
+**Next:** [06 — OpenSpec](./06-openspec.md) ·
+**Back to index:** [00-index.md](00-index.md)

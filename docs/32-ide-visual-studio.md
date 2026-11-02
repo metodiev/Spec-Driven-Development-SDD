@@ -397,4 +397,5 @@ dotnet test
 ---
 
 **Previous:** [31 — VS Code](./31-ide-vscode.md) ·
-**Next:** [33 — End-to-end walkthrough](./33-end-to-end-walkthrough.md)
+**Next:** [33 — End-to-end walkthrough](./33-end-to-end-walkthrough.md) ·
+**Back to index:** [00-index.md](00-index.md)

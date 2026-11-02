@@ -412,4 +412,5 @@ severity-ranked, no invented facts.
 ---
 
 **Previous:** [16 — Refactoring](./16-refactoring.md) ·
-**Next:** [18 — Architecture review](./18-architecture-review.md)
+**Next:** [18 — Architecture review](./18-architecture-review.md) ·
+**Back to index:** [00-index.md](00-index.md)

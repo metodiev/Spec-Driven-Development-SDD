@@ -490,4 +490,5 @@ jobs:
 ---
 
 **Previous:** [SQL](./sql.md) ·
-**Next:** [14 — Feature development](../docs/14-feature-development.md)
+**Next:** [14 — Feature development](../docs/14-feature-development.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

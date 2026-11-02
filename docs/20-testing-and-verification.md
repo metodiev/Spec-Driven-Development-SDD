@@ -321,4 +321,5 @@ See [chapter 21](./21-security-review.md) for the review procedure.
 ---
 
 **Previous:** [19 — Read-only code review](./19-read-only-code-review.md) ·
-**Next:** [21 — Security review](./21-security-review.md)
+**Next:** [21 — Security review](./21-security-review.md) ·
+**Back to index:** [00-index.md](00-index.md)

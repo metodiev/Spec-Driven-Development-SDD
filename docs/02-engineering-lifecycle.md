@@ -87,7 +87,7 @@ flowchart TD
 - U2: Does a downstream billing job consume this endpoint? (BLOCKING — must confirm)
 ```
 
-### Exit criteria
+### Exit criteria — Phase A (Discovery)
 
 - [ ] The stack and versions are read from manifests, not guessed.
 - [ ] Existing implementations that could be reused are listed with file:line.
@@ -180,7 +180,7 @@ flowchart LR
 | "Export is fast" | "p95 first byte < 1.5 s at 100k rows and 20 concurrent exports" |
 | "Handle errors" | "On upstream `503`, retry 3 times with exponential backoff (100/300/900 ms), then return `502` with correlation ID" |
 
-### Exit criteria
+### Exit criteria — Phase B (Specification)
 
 - [ ] Every requirement has at least one acceptance criterion.
 - [ ] Every NFR has a number, a condition, and a verification method.
@@ -301,7 +301,7 @@ sequenceDiagram
 | S-01 | HIGH | FR-3 | Row-visibility rule conflicts with AC-3.2 | spec.md:88 vs spec.md:96 | Define precedence; add test for admin override |
 ```
 
-### Exit criteria
+### Exit criteria — Phase D (Specification review)
 
 - [ ] No open `CRITICAL` or `HIGH` findings.
 - [ ] Every finding has a requirement reference and evidence.
@@ -505,4 +505,5 @@ No executable commands. Gate definitions are consistent with
 ---
 
 **Previous:** [01 — Fundamentals](./01-fundamentals.md) ·
-**Next:** [03 — Repository discovery](./03-repository-discovery.md)
+**Next:** [03 — Repository discovery](./03-repository-discovery.md) ·
+**Back to index:** [00-index.md](00-index.md)

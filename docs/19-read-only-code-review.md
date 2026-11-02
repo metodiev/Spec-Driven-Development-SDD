@@ -369,4 +369,5 @@ grep -rn "old_symbol" . --exclude-dir=.git --exclude-dir=node_modules
 ---
 
 **Previous:** [18 — Architecture review](./18-architecture-review.md) ·
-**Next:** [20 — Testing and verification](./20-testing-and-verification.md)
+**Next:** [20 — Testing and verification](./20-testing-and-verification.md) ·
+**Back to index:** [00-index.md](00-index.md)

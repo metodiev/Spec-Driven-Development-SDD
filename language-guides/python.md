@@ -626,4 +626,5 @@ Verification: `pytest -m eval tests/eval/test_ranking.py` records the metric and
 ---
 
 **Previous:** [Java](./java.md) ·
-**Next:** [.NET / C#](./dotnet-csharp.md)
+**Next:** [.NET / C#](./dotnet-csharp.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

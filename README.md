@@ -3,8 +3,9 @@
 **A complete engineering playbook for building software with AI coding agents — specifications
 first, evidence-based implementation, independent read-only review, and verifiable acceptance.**
 
-> Documentation and reusable assets only. No application code, no installed framework, nothing
-> executed against your repository. See [Repository status](#repository-status).
+> Documentation and reusable assets only. No application code, no installed framework, and nothing
+> executed against your repository. Validation state and known limitations are recorded in
+> [docs/00-index.md § 8](docs/00-index.md#8-validation-status).
 
 | At a glance | |
 | --- | --- |
@@ -12,7 +13,7 @@ first, evidence-based implementation, independent read-only review, and verifiab
 | **Who it is for** | Engineers, architects, tech leads, platform teams, and security reviewers using AI agents |
 | **Languages covered** | Java, Python, .NET/C#, JavaScript/TypeScript, Go, Rust, Kotlin, PHP, SQL, Infrastructure as Code |
 | **Agents covered** | GitHub Copilot, Claude Code, Codex, Cursor, Gemini CLI, AWS Kiro |
-| **Size** | 31 chapters (01–35, excluding 13) · 10 language guides · 10 templates · 11 role prompts (+ a review pack) · 399 diagrams |
+| **Size** | 36 chapters (01–37; chapter 13 is the `language-guides/` directory) · 10 language guides · 10 templates · 15 prompts (+ a review pack) · 422 diagrams |
 | **Start here** | [docs/00-index.md](docs/00-index.md) |
 
 ---
@@ -33,9 +34,10 @@ first, evidence-based implementation, independent read-only review, and verifiab
 12. [One ticket, one full cycle](#12-one-ticket-one-full-cycle)
 13. [Six ways to build the same thing](#13-six-ways-to-build-the-same-thing)
 14. [Publishing to Confluence](#14-publishing-to-confluence)
-15. [Repository map](#15-repository-map)
-16. [Validate the documentation](#16-validate-the-documentation)
-17. [Repository status](#repository-status)
+15. [Driving the agent without drift](#15-driving-the-agent-without-drift)
+16. [Repository map](#16-repository-map)
+17. [Contributing](#17-contributing)
+18. [License](#18-license)
 
 ---
 
@@ -396,7 +398,7 @@ flowchart TD
     subgraph Enable["Enables"]
         N1["10 language guides<br/>with commands and tests"]
         N2["Templates for every artifact"]
-        N3["11 role prompts + a review pack<br/>with evidence rules baked in"]
+        N3["15 role + mode prompts<br/>with evidence rules baked in"]
     end
     subgraph Verify["Verifies"]
         V1["Documentation validator<br/>links, fences, tables, YAML, JSON"]
@@ -633,11 +635,13 @@ flowchart TD
     Q -->|"Build the CI and gates"| T3["Chapters 02, 12, 20, 22, 24, 25"]
     Q -->|"Review work safely"| T4["Chapters 17–21, 23"]
     Q -->|"Get language specifics"| T5["Chapters 01, 02 + your language guide"]
+    Q -->|"Run agents without drift"| T6["Chapters 23, 36, 37"]
     T1 --> DONE["Handbook index"]
     T2 --> DONE
     T3 --> DONE
     T4 --> DONE
     T5 --> DONE
+    T6 --> DONE
 ```
 
 | Track | Chapters | Time | Outcome |
@@ -647,6 +651,7 @@ flowchart TD
 | **Platform / DevOps** — gates and enforcement | 02, 12, 20, 22, 24, 25 | ~3 h | CI gates that fail closed |
 | **Reviewer** — read-only review and evidence | 17–21, 23 | ~2.5 h | Review reports that find real defects |
 | **Language specialist** — pick your guide | 01, 02 + your guide | ~2 h | Commands, tests, and failure modes for your stack |
+| **Agent operator** — plan/implement/verify without fabrication | 23, 36, 37 | ~2.5 h | Prompts that hold their shape and an agent that reports honestly |
 
 ### Maturity model
 
@@ -879,7 +884,116 @@ conversion rules and a complete script.
 
 ---
 
-## 15. Repository map
+## 15. Driving the agent without drift
+
+Chapters [36](docs/36-agent-prompt-playbook.md) and [37](docs/37-agent-anti-hallucination.md) are a
+matched pair: 36 is the *operator's* manual (what to type), 37 is the *agent's* manual (what it must
+do instead of inventing). Neither works alone — a precise prompt cannot rescue an agent that will
+fabricate a test result, and a disciplined agent cannot rescue a request that never said what
+"done" means.
+
+### The four ingredients of a request that survives contact with an agent
+
+```mermaid
+flowchart LR
+    subgraph In["Every request carries"]
+        A["Scope<br/>files, modules, tickets"]
+        B["Constraints<br/>patterns, rules, limits"]
+        C["Evidence<br/>what must be produced"]
+        D["Stop condition<br/>when to halt and ask"]
+    end
+    In --> OUT["Predictable diff<br/>+ verifiable report"]
+```
+
+An agent asked to "plan the endpoint" without those four will produce a plausible plan for a
+different endpoint. The playbook gives three complete prompts — one per mode — with the exact
+phrasing, the good/bad transcript next to each, and the acceptance gate that decides whether the
+output is allowed to move to the next phase.
+
+### Plan, implement, verify are three different contracts
+
+```mermaid
+flowchart TD
+    P["PLAN<br/>read-only<br/>output: spec deltas + risks"] --> G1{"Gate<br/>[NEEDS CLARIFICATION] = 0?"}
+    G1 -->|No| PQ["Stop. Ask. Do not code."]
+    G1 -->|Yes| I["IMPLEMENT<br/>write-scoped<br/>output: diff + tests"]
+    I --> G2{"Gate<br/>commands actually run?"}
+    G2 -->|No| IQ["Stop. Report unverified."]
+    G2 -->|Yes| V["VERIFY<br/>independent context<br/>output: findings list"]
+    V --> G3{"Gate<br/>every AC mapped to evidence?"}
+    G3 -->|No| VQ["FAIL — do not merge"]
+    G3 -->|Yes| DONE["Merge candidate"]
+```
+
+Mixing modes is the single most common cause of fabricated progress: an agent that is allowed to
+write while still planning will resolve open questions by guessing, and an agent that verifies its
+own implementation will confirm its own assumptions. Chapter 36 keeps them separate by prompt;
+chapter 37 keeps them separate by contract.
+
+### Five gates against fabrication
+
+Chapter 37 names ten distinct fabrication classes (invented APIs, invented file contents, invented
+command output, invented test results, invented approvals, stale-state claims, scope creep disguised
+as completeness, silent requirement drops, unlabeled inference, and false completion) and answers
+them with five gates. The gates are behavioural rules, not slogans — each one has a concrete
+failure it prevents.
+
+```mermaid
+flowchart LR
+    G1["GROUND<br/>read before you assert"] --> G2["CITE<br/>file:line or command"]
+    G2 --> G3["EXECUTE<br/>run it, paste it"]
+    G3 --> G4["LABEL<br/>fact / inference / unknown"]
+    G4 --> G5["ESCALATE<br/>stop instead of guessing"]
+```
+
+| Gate | Prevents | Enforcement |
+| --- | --- | --- |
+| **GROUND** | Asserting file contents, APIs, or config that were never read | Any claim about a file must trace to a read in this session |
+| **CITE** | Confident summaries with no addressable evidence | Every finding carries `path:line` or a command + output |
+| **EXECUTE** | Reporting tests, builds, or lints that were never run | Verification text must be a pasted transcript, never a prediction |
+| **LABEL** | Inference presented as fact | Unverified claims are prefixed `ASSUMPTION:` or `UNVERIFIED:` |
+| **ESCALATE** | Inventing detail to fill a gap | A gap produces a question or a blocked item, never a fabrication |
+
+### What a refusal looks like
+
+The manual ships refusal scripts, not just prohibitions, because "don't hallucinate" is not an
+instruction an agent can follow. The pattern is: state what is missing, state what would resolve it,
+propose the smallest step that stays honest, and stop.
+
+```mermaid
+sequenceDiagram
+    participant U as Operator
+    participant A as Agent
+    U->>A: Implement the retry logic in src/http/client.go
+    A->>A: Attempt to read src/http/client.go
+    A-->>U: BLOCKED: file does not exist. Nearest matches: src/http/client.ts, src/clients/http.go
+    U->>A: Use src/http/client.ts
+    A->>A: Read file, confirm retry helper absent
+    A-->>U: Ready. Plan: add retryWithBackoff, wire into Send, 3 table tests. Proceed?
+```
+
+That exchange is the goal state: the agent found the gap, reported the evidence for it, and let the
+human redirect — in two messages instead of forty lines of plausible TypeScript for a Go file that
+never existed.
+
+### Structural defences beat willpower
+
+Prompts decay across a long session. The chapter therefore leans on structure that survives:
+
+| Defence | Why it holds when a prompt does not |
+| --- | --- |
+| **Read-only plan mode** | A tool that cannot write cannot fabricate a write |
+| **Fresh context for review** | A reviewer that never saw the implementation cannot rationalise it |
+| **Acceptance criteria as test names** | A test named after an AC cannot be "covered" by a paragraph |
+| **Required command transcripts** | A missing transcript is visible; a missing claim is not |
+| **Short sessions, one change each** | Drift compounds with length; small sessions cap the blast radius |
+
+Every prompt in [prompts/](prompts/README.md) embeds the corresponding gate, so the discipline
+travels with the template instead of depending on whoever is typing.
+
+---
+
+## 16. Repository map
 
 Chapters live in [`docs/`](docs/); reusable assets stay at the root so they are easy to find and
 copy into your own repository.
@@ -889,7 +1003,8 @@ Spec-Driven-Development-SDD/
 ├── README.md                       ← you are here (orientation)
 ├── LICENSE                         MIT
 │
-├── docs/                           the handbook — 31 chapters
+├── docs/                           the handbook — 36 chapters
+│   ├── README.md                   landing page for the folder
 │   ├── 00-index.md                 index, learning path, validation log
 │   ├── 01-fundamentals.md          05–11 frameworks        17–21 reviews
 │   ├── 02-engineering-lifecycle.md 12 agent integration    22 git policy
@@ -905,11 +1020,13 @@ Spec-Driven-Development-SDD/
 │   ├── 32-ide-visual-studio.md     Visual Studio deep dive
 │   ├── 33-end-to-end-walkthrough.md one Jira ticket, the whole cycle
 │   ├── 34-simple-project-examples.md the same feature, six ways
-│   └── 35-confluence-publishing.md  publish to a wiki without forking the truth
+│   ├── 35-confluence-publishing.md  publish to a wiki without forking the truth
+│   ├── 36-agent-prompt-playbook.md  what to say for plan / implement / verify
+│   └── 37-agent-anti-hallucination.md  five gates, refusal scripts, recovery
 │
 ├── language-guides/                chapter 13 — 10 guides + index
 ├── templates/                      10 artifact templates + index
-├── prompts/                        11 role prompts + review pack + index
+├── prompts/                        15 prompts + review pack + index
 ├── examples/                       non-active agent/CI examples
 └── tools/                          validators and their documentation
 ```
@@ -935,11 +1052,12 @@ flowchart TD
             W3["Git · Evidence · Multi-agent · CI"]
             W4["Enterprise · Troubleshooting · Glossary"]
         end
-        subgraph Practice["Practice 29–35"]
+        subgraph Practice["Practice 29–37"]
             P1["IDE setup 29–32"]
             P2["Walkthrough 33"]
             P3["Examples 34"]
             P4["Confluence 35"]
+            P5["Agent prompts 36–37"]
         end
     end
     subgraph Assets["Reusable assets (root)"]
@@ -956,61 +1074,20 @@ flowchart TD
 
 ---
 
-## 16. Validate the documentation
+## 17. Contributing
 
-Every claim that can be machine-checked in this repository is checked.
-
-```bash
-python3 tools/validate_docs.py
-```
-
-| Check | What it verifies |
-| --- | --- |
-| Links and anchors | Every relative link resolves, every `#fragment` exists |
-| Code fences | Balanced, and every fence has a language tag |
-| Tables | Every row has the header's column count |
-| JSON | Every `json` block parses |
-| YAML | Full parse when PyYAML is installed; structural checks otherwise |
-| Mermaid | Diagram type is known and `subgraph`/`end` are balanced |
-
-Optional, stronger check — parse every diagram with the real Mermaid parser:
-
-```bash
-mkdir -p "$TMPDIR/mmcheck" && cd "$TMPDIR/mmcheck" && npm init -y && npm i mermaid@11 jsdom
-node tools/check_mermaid.mjs . "$TMPDIR/mmcheck/node_modules"
-```
-
-**Last verified: 2026-11-02** — 0 link errors, 0 table errors, 0 warnings, and **399/399 Mermaid
-diagrams parsed**. See [tools/README.md](tools/README.md) for what each check proves and what
-it cannot.
-
----
-
-## Repository status
-
-| Property | Value |
-| --- | --- |
-| Contents | Documentation, templates, prompts, examples, validators |
-| Application code | None |
-| Installed SDD framework | None — adoption is a separate, reviewed decision |
-| Version snapshot | 2026-11-02 |
-| Validation | Passing (see above) |
-| Git mode for this repository | **Mode 1** — documentation only, no automatic commits |
-
-Tool versions are verified snapshots (see the table in
-[00-index.md](docs/00-index.md#6-verified-sources-and-research-date)); re-verify before
-installing. External links point to official documentation and repositories; third-party content
-remains the property of its owners.
-
-## Contributing
-
-- Follow the structure of the chapter you edit: purpose, when to use, body, verification, references.
-- Run the validator before proposing a change.
+- Follow the structure of the chapter you edit: purpose, when to use, body, references — plus a
+  verification section whenever the chapter makes claims that can be checked (tool behaviour,
+  versions, commands). Chapters that are purely workflow or reference material omit it rather
+  than pad it.
+- Run `python3 tools/validate_docs.py` before proposing a change — it checks links, anchors,
+  fences, table columns, JSON, YAML, front matter, and Mermaid structure. What each check can
+  and cannot prove is documented in [tools/README.md](tools/README.md).
 - Never add a command you have not run or verified against official documentation. Label examples
   that are illustrative.
 - Update the version table when you re-verify a tool.
 
-## License
+## 18. License
 
 [MIT](LICENSE). Third-party tool names and documentation remain the property of their respective
 owners; links are provided for reference, not redistribution.

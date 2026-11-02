@@ -10,6 +10,13 @@
 Define enforceable rules that prevent an agent from asserting things it has not verified, and
 give reviewers a way to detect unsupported claims before they reach production.
 
+> **Division of labour.** This chapter is the *organization's* rule set: what must be true of any
+> claim, stated as 14 numbered evidence rules you can put in a policy. The *agent's* side of the
+> same discipline — the moment-to-moment protocol for refusing, labelling, retracting, and
+> escalating — is [chapter 37](./37-agent-anti-hallucination.md). For the operator's phrasing that
+> makes the rules enforceable at request time, see
+> [chapter 36](./36-agent-prompt-playbook.md).
+
 ```mermaid
 flowchart LR
     C["Claim"] --> E{"Evidence?"}
@@ -366,4 +373,5 @@ This chapter is process-only. Its rules are reflected in:
 ---
 
 **Previous:** [22 — Git and commit policy](./22-git-and-commit-policy.md) ·
-**Next:** [24 — Multi-agent engineering](./24-multi-agent-engineering.md)
+**Next:** [24 — Multi-agent engineering](./24-multi-agent-engineering.md) ·
+**Back to index:** [00-index.md](00-index.md)

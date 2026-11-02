@@ -535,4 +535,5 @@ git diff --cached --name-only | grep -Ei '(^|/)(node_modules|dist|build|target)/
 ---
 
 **Previous:** [21 — Security review](./21-security-review.md) ·
-**Next:** [23 — Hallucination prevention](./23-hallucination-prevention.md)
+**Next:** [23 — Hallucination prevention](./23-hallucination-prevention.md) ·
+**Back to index:** [00-index.md](00-index.md)

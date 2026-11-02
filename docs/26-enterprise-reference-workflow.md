@@ -322,4 +322,5 @@ contracts changed.
 ---
 
 **Previous:** [25 — CI/CD integration](./25-ci-cd-integration.md) ·
-**Next:** [27 — Troubleshooting](./27-troubleshooting.md)
+**Next:** [27 — Troubleshooting](./27-troubleshooting.md) ·
+**Back to index:** [00-index.md](00-index.md)

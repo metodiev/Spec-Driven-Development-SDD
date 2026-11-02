@@ -425,4 +425,5 @@ Worktrees are disposable; mission artifacts are not.
 ---
 
 **Previous:** [08 — BMAD Method](./08-bmad-method.md) ·
-**Next:** [10 — Ponytail](./10-ponytail.md)
+**Next:** [10 — Ponytail](./10-ponytail.md) ·
+**Back to index:** [00-index.md](00-index.md)

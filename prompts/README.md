@@ -16,6 +16,10 @@ Each file is a role prompt you can paste into a coding agent or install as a ski
 | [test-verification-agent.md](./test-verification-agent.md) | Verifier | **No** | "Verify the acceptance criteria" |
 | [final-acceptance-agent.md](./final-acceptance-agent.md) | Acceptance | **No** | "Compare against the spec" |
 | [review-prompts.md](./review-prompts.md) | Ten focused review prompts | **No** | Any review type, one block at a time |
+| [plan-mode.md](./plan-mode.md) | Planner (facts → tasks) | **No** | "Plan this change, no code" |
+| [implement-mode.md](./implement-mode.md) | Single-task implementer | Yes | "Implement T-04 only" |
+| [verify-mode.md](./verify-mode.md) | Evidence collector | **No** | "Verify the acceptance criteria" |
+| [anti-hallucination-guard.md](./anti-hallucination-guard.md) | Standing contract | **No** | Paste into any session |
 
 ## Role flow
 
@@ -30,7 +34,25 @@ flowchart LR
     S --> F["final-acceptance-agent"]
     BT["bug-triage-agent"] --> BF["bug-fix-agent"]
     BF --> C
+    PM["plan-mode"] --> IM["implement-mode"]
+    IM --> VM["verify-mode"]
+    VM --> C
+    AG["anti-hallucination-guard"] -.-> PM
+    AG -.-> IM
+    AG -.-> VM
 ```
+
+## Choosing between the role prompts and the mode prompts
+
+| If you want… | Use |
+| --- | --- |
+| A specialist reviewer for one artifact | the **role** prompt (e.g. `specification-reviewer`) |
+| To drive a multi-step change step by step | the **mode** prompts: `plan-mode` → `implement-mode` → `verify-mode` |
+| A contract that applies to every session | `anti-hallucination-guard` |
+
+The role prompts are read-only reviewers and specialists. The mode prompts are the three
+requests that move work forward. Full examples of what to say are in
+[chapter 36](../docs/36-agent-prompt-playbook.md).
 
 ## Common non-negotiables (present in every prompt)
 

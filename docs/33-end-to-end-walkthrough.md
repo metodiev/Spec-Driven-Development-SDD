@@ -1121,4 +1121,5 @@ flowchart TD
 ---
 
 **Previous:** [32 — Visual Studio](./32-ide-visual-studio.md) ·
-**Back to index:** [00-index.md](./00-index.md)
+**Next:** [34 — Simple project examples](./34-simple-project-examples.md) ·
+**Back to index:** [00-index.md](00-index.md)

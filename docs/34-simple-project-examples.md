@@ -643,4 +643,5 @@ flowchart LR
 ---
 
 **Previous:** [33 — End-to-end walkthrough](./33-end-to-end-walkthrough.md) ·
-**Next:** [35 — Confluence publishing](./35-confluence-publishing.md)
+**Next:** [35 — Confluence publishing](./35-confluence-publishing.md) ·
+**Back to index:** [00-index.md](00-index.md)

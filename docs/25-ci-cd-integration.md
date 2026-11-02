@@ -325,4 +325,5 @@ Checks performed:
 ---
 
 **Previous:** [24 — Multi-agent engineering](./24-multi-agent-engineering.md) ·
-**Next:** [26 — Enterprise reference workflow](./26-enterprise-reference-workflow.md)
+**Next:** [26 — Enterprise reference workflow](./26-enterprise-reference-workflow.md) ·
+**Back to index:** [00-index.md](00-index.md)

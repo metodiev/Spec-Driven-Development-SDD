@@ -468,4 +468,5 @@ fork or a custom skill.
 ---
 
 **Previous:** [10 — Ponytail](./10-ponytail.md) ·
-**Next:** [12 — Coding-agent integration](./12-coding-agent-integration.md)
+**Next:** [12 — Coding-agent integration](./12-coding-agent-integration.md) ·
+**Back to index:** [00-index.md](00-index.md)

@@ -417,4 +417,5 @@ cd /tmp/sdd-check
 ---
 
 **Previous:** [29 — IDE setup overview](./29-ide-setup.md) ·
-**Next:** [31 — VS Code](./31-ide-vscode.md)
+**Next:** [31 — VS Code](./31-ide-vscode.md) ·
+**Back to index:** [00-index.md](00-index.md)

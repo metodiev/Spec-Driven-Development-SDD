@@ -525,4 +525,5 @@ jobs:
 ---
 
 **Previous:** [Python](./python.md) ·
-**Next:** [JavaScript / TypeScript](./javascript-typescript.md)
+**Next:** [JavaScript / TypeScript](./javascript-typescript.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

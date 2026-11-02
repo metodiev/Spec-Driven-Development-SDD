@@ -430,4 +430,5 @@ pnpm run verify
 ---
 
 **Previous:** [30 — IntelliJ IDEA](./30-ide-intellij.md) ·
-**Next:** [32 — Visual Studio](./32-ide-visual-studio.md)
+**Next:** [32 — Visual Studio](./32-ide-visual-studio.md) ·
+**Back to index:** [00-index.md](00-index.md)

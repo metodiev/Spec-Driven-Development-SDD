@@ -474,4 +474,5 @@ flowchart LR
 ---
 
 **Previous:** [14 — Feature development](./14-feature-development.md) ·
-**Next:** [16 — Refactoring](./16-refactoring.md)
+**Next:** [16 — Refactoring](./16-refactoring.md) ·
+**Back to index:** [00-index.md](00-index.md)

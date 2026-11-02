@@ -4,7 +4,7 @@ Two validators, deliberately separated by dependency weight.
 
 | Tool | Requires | What it checks |
 | --- | --- | --- |
-| [`validate_docs.py`](./validate_docs.py) | Python 3.8+ standard library | Links, anchors, code fences, table columns, JSON, YAML structure, Mermaid structure |
+| [`validate_docs.py`](./validate_docs.py) | Python 3.8+ standard library | Links, anchors, code fences, table columns, JSON, YAML structure, YAML front matter, Mermaid structure |
 | [`check_mermaid.mjs`](./check_mermaid.mjs) | Node + `mermaid` + `jsdom` in a scratch dir | Real Mermaid parsing (syntax errors) |
 
 ## Running
@@ -38,7 +38,7 @@ node tools/check_mermaid.mjs . "$TMPDIR/mmcheck/node_modules"
 | Fences | Balanced and labeled | The code compiles |
 | Tables | Every row has the header's column count | The content is correct |
 | JSON | Parses as JSON | The values are correct |
-| YAML | Parses (with PyYAML) or is structurally plausible | Schema validity, CI semantic correctness |
+| YAML (fenced and front matter) | Parses (with PyYAML) or is structurally plausible | Schema validity, CI semantic correctness |
 | Mermaid structure | Diagram type and `subgraph`/`end` balance | Renderability |
 | Mermaid parse | The parser accepts the syntax | Visual layout quality |
 

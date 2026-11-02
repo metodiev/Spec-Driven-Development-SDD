@@ -482,4 +482,5 @@ jobs:
 ---
 
 **Previous:** [JavaScript / TypeScript](./javascript-typescript.md) ·
-**Next:** [Rust](./rust.md)
+**Next:** [Rust](./rust.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

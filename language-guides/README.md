@@ -91,4 +91,5 @@ Source: `endoflife.date` API for each product. Re-check before planning upgrades
 ---
 
 **Previous:** [12 — Coding-agent integration](../docs/12-coding-agent-integration.md) ·
-**Next:** [Java](./java.md)
+**Next:** [Java](./java.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

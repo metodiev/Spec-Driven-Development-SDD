@@ -343,4 +343,4 @@ mindmap
 
 **Previous:** [27 — Troubleshooting](./27-troubleshooting.md) ·
 **Next:** [29 — IDE setup](./29-ide-setup.md) ·
-**Back to index:** [00-index.md](./00-index.md)
+**Back to index:** [00-index.md](00-index.md)

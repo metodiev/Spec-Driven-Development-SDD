@@ -329,4 +329,5 @@ See [`templates/architecture-decision-record.md`](../templates/architecture-deci
 ---
 
 **Previous:** [17 — Review without implementation](./17-specification-review.md) ·
-**Next:** [19 — Read-only code review](./19-read-only-code-review.md)
+**Next:** [19 — Read-only code review](./19-read-only-code-review.md) ·
+**Back to index:** [00-index.md](00-index.md)

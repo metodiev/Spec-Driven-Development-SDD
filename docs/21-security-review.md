@@ -348,4 +348,5 @@ container with the repository mounted read-only.
 ---
 
 **Previous:** [20 — Testing and verification](./20-testing-and-verification.md) ·
-**Next:** [22 — Git and commit policy](./22-git-and-commit-policy.md)
+**Next:** [22 — Git and commit policy](./22-git-and-commit-policy.md) ·
+**Back to index:** [00-index.md](00-index.md)

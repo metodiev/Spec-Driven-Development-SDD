@@ -535,4 +535,5 @@ jobs:
 ---
 
 **Previous:** [.NET / C#](./dotnet-csharp.md) ·
-**Next:** [Go](./go.md)
+**Next:** [Go](./go.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

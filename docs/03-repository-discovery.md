@@ -465,4 +465,5 @@ Language-specific commands are documented per guide in
 ---
 
 **Previous:** [02 — Engineering lifecycle](./02-engineering-lifecycle.md) ·
-**Next:** [04 — Tool comparison](./04-tool-comparison.md)
+**Next:** [04 — Tool comparison](./04-tool-comparison.md) ·
+**Back to index:** [00-index.md](00-index.md)

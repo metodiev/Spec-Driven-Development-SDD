@@ -144,7 +144,10 @@ export CONFLUENCE_API_TOKEN="…"   # from a secret store, not a file in the rep
 ## 5. Markdown → Confluence conversion
 
 Confluence does **not** render Markdown from the API. You must send `storage` (XHTML) or `wiki`
-(wiki markup). Two practical options:
+(wiki markup). This is a limitation of the *API*, not of the editor: the Confluence UI accepts a
+markdown paste or `Insert > Markup` and converts it to storage format on entry. That path is fine
+for a one-off hand-published page and useless for automation, because the conversion happens
+client-side and cannot be scripted through the REST API. Two practical options:
 
 ```mermaid
 flowchart TD
@@ -566,7 +569,6 @@ flowchart LR
 - Confluence Cloud REST API v2: pages — <https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-page/>
 - Confluence Cloud REST API (v1) — <https://developer.atlassian.com/cloud/confluence/rest/v1/>
 - Confluence Cloud OpenAPI v2 specification — <https://developer.atlassian.com/cloud/confluence/openapi-v2.json>
-- Confluence storage format — <https://confluence.atlassian.com/doc/confluence-storage-format-169546849.html>
 - Confluence wiki markup — <https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html>
 - Atlassian API tokens — <https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/>
 - Mermaid CLI — <https://github.com/mermaid-js/mermaid-cli>
@@ -574,4 +576,5 @@ flowchart LR
 ---
 
 **Previous:** [34 — Simple project examples](./34-simple-project-examples.md) ·
-**Back to index:** [00-index.md](./00-index.md)
+**Next:** [36 — Agent prompt playbook](./36-agent-prompt-playbook.md) ·
+**Back to index:** [00-index.md](00-index.md)

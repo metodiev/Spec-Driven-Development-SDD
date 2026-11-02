@@ -292,4 +292,5 @@ flowchart LR
 ---
 
 **Previous:** [28 — Glossary](./28-glossary.md) ·
-**Next:** [30 — IntelliJ IDEA](./30-ide-intellij.md)
+**Next:** [30 — IntelliJ IDEA](./30-ide-intellij.md) ·
+**Back to index:** [00-index.md](00-index.md)

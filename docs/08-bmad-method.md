@@ -418,4 +418,5 @@ module or in customized copies you control.
 ---
 
 **Previous:** [07 — AWS Kiro](./07-aws-kiro.md) ·
-**Next:** [09 — Spec Kitty](./09-spec-kitty.md)
+**Next:** [09 — Spec Kitty](./09-spec-kitty.md) ·
+**Back to index:** [00-index.md](00-index.md)

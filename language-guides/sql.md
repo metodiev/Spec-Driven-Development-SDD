@@ -480,4 +480,5 @@ flowchart LR
 ---
 
 **Previous:** [PHP](./php.md) ·
-**Next:** [Infrastructure as Code](./infrastructure-as-code.md)
+**Next:** [Infrastructure as Code](./infrastructure-as-code.md) ·
+**Back to index:** [00-index.md](../docs/00-index.md)

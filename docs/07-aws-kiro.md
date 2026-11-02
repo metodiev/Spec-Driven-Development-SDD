@@ -350,6 +350,9 @@ Rules:
 - Generate steering first; it is what makes later specs consistent with the existing code.
 - Verify generated steering against the code — it is a draft, not a fact.
 - Add `fileMatch` steering for the areas where contributors most often get it wrong.
+- **Know which scope you are editing.** Steering and configuration can live at more than
+  one scope, and the narrower scope wins on conflict. Commit team rules at the workspace
+  scope so they are reviewed with the code; keep personal preferences out of the repository.
 - Keep hooks out of the first adoption; add them after the workflow is stable.
 
 ---
@@ -543,9 +546,10 @@ than only in `~/.kiro/`, so a reinstall does not lose team knowledge.
 - Agent skills — <https://kiro.dev/docs/skills/>
 - Custom agents — <https://kiro.dev/docs/custom-agents/>
 - Permissions — <https://kiro.dev/docs/permissions/>
-- Configuration scopes — <https://kiro.dev/docs/configuration-scopes/>
+- Configuration scopes (workspace / user / global precedence) — <https://kiro.dev/docs/configuration/>
 
 ---
 
 **Previous:** [06 — OpenSpec](./06-openspec.md) ·
-**Next:** [08 — BMAD Method](./08-bmad-method.md)
+**Next:** [08 — BMAD Method](./08-bmad-method.md) ·
+**Back to index:** [00-index.md](00-index.md)

@@ -367,4 +367,5 @@ recommendation is deliberately minimal:
 ---
 
 **Previous:** [03 — Repository discovery](./03-repository-discovery.md) ·
-**Next:** [05 — GitHub Spec Kit](./05-github-spec-kit.md)
+**Next:** [05 — GitHub Spec Kit](./05-github-spec-kit.md) ·
+**Back to index:** [00-index.md](00-index.md)
