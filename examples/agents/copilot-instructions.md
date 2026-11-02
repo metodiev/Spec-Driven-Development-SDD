@@ -1,7 +1,7 @@
 # Repository rules (example)
 
 > **Example only.** Copy to `.github/copilot-instructions.md` and adapt.
-> See [chapter 12](../../12-coding-agent-integration.md).
+> See [chapter 12](../../docs/12-coding-agent-integration.md).
 
 ## Non-negotiables
 
@@ -31,6 +31,6 @@
 
 ## Deeper documentation
 
-- Process: `README.md`
+- Process: `docs/00-index.md`
 - Review: `19-read-only-code-review.md`
 - Evidence rules: `23-hallucination-prevention.md`

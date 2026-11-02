@@ -96,7 +96,7 @@ commit it. An unpinned wrapper means the agent and CI compile with different plu
 ### 3.2 Add the agent rules
 
 `AGENTS.md` at the repository root (and `.github/copilot-instructions.md` for Visual Studio and
-JetBrains — see [chapter 29](../29-ide-setup.md)):
+JetBrains — see [chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## Java rules

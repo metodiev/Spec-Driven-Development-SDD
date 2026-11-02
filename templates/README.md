@@ -5,16 +5,16 @@ Copy-paste artifacts. Each template is a standalone Markdown file with placehold
 
 | Template | Use when | Chapter |
 | --- | --- | --- |
-| [feature-spec.md](./feature-spec.md) | Starting any feature | [14](../14-feature-development.md) |
-| [bug-report.md](./bug-report.md) | Reporting or fixing a defect | [15](../15-bug-fixing.md) |
-| [architecture-decision-record.md](./architecture-decision-record.md) | A decision is expensive to reverse | [18](../18-architecture-review.md) |
-| [implementation-plan.md](./implementation-plan.md) | Designing a change before code | [14](../14-feature-development.md) |
-| [specification-review-report.md](./specification-review-report.md) | Reviewing a spec (read-only) | [17](../17-specification-review.md) |
-| [code-review-report.md](./code-review-report.md) | Reviewing a diff (read-only) | [19](../19-read-only-code-review.md) |
-| [verification-report.md](./verification-report.md) | Proving acceptance criteria | [20](../20-testing-and-verification.md) |
-| [evidence-ledger.md](./evidence-ledger.md) | Tracking claims → evidence | [23](../23-hallucination-prevention.md) |
-| [pull-request-template.md](./pull-request-template.md) | Opening a PR | [22](../22-git-and-commit-policy.md) |
-| [agent-role-definition.md](./agent-role-definition.md) | Defining a new agent role | [24](../24-multi-agent-engineering.md) |
+| [feature-spec.md](./feature-spec.md) | Starting any feature | [14](../docs/14-feature-development.md) |
+| [bug-report.md](./bug-report.md) | Reporting or fixing a defect | [15](../docs/15-bug-fixing.md) |
+| [architecture-decision-record.md](./architecture-decision-record.md) | A decision is expensive to reverse | [18](../docs/18-architecture-review.md) |
+| [implementation-plan.md](./implementation-plan.md) | Designing a change before code | [14](../docs/14-feature-development.md) |
+| [specification-review-report.md](./specification-review-report.md) | Reviewing a spec (read-only) | [17](../docs/17-specification-review.md) |
+| [code-review-report.md](./code-review-report.md) | Reviewing a diff (read-only) | [19](../docs/19-read-only-code-review.md) |
+| [verification-report.md](./verification-report.md) | Proving acceptance criteria | [20](../docs/20-testing-and-verification.md) |
+| [evidence-ledger.md](./evidence-ledger.md) | Tracking claims → evidence | [23](../docs/23-hallucination-prevention.md) |
+| [pull-request-template.md](./pull-request-template.md) | Opening a PR | [22](../docs/22-git-and-commit-policy.md) |
+| [agent-role-definition.md](./agent-role-definition.md) | Defining a new agent role | [24](../docs/24-multi-agent-engineering.md) |
 
 ## Usage rules
 
@@ -52,4 +52,4 @@ repo/
 
 ---
 
-**Back to index:** [00-index.md](../00-index.md)
+**Back to index:** [00-index.md](../docs/00-index.md)

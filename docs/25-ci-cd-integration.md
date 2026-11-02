@@ -264,7 +264,7 @@ Checks performed:
 | Mermaid structure | Known diagram type + balanced subgraph/end |
 | Anchor check | Heading anchors referenced by links exist |
 
-> See [tools/validate_docs.py](./tools/validate_docs.py) for the actual implementation and its
+> See [tools/validate_docs.py](../tools/validate_docs.py) for the actual implementation and its
 > limitations.
 
 ---
@@ -314,7 +314,7 @@ Checks performed:
 - [Chapter 20 — Testing and verification](./20-testing-and-verification.md)
 - [Chapter 21 — Security review](./21-security-review.md)
 - [Chapter 22 — Git and commit policy](./22-git-and-commit-policy.md)
-- [templates/pull-request-template.md](./templates/pull-request-template.md)
+- [templates/pull-request-template.md](../templates/pull-request-template.md)
 - GitHub Actions security hardening — <https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions>
 - OpenID Connect in GitHub Actions — <https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect>
 - SLSA — <https://slsa.dev/>

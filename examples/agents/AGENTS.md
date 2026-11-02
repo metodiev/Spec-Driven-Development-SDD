@@ -1,7 +1,7 @@
 # AGENTS.md (example)
 
 > **Example only.** This file is not active in this repository. Copy it into your project root and
-> replace every `<placeholder>`. See [chapter 12](../../12-coding-agent-integration.md).
+> replace every `<placeholder>`. See [chapter 12](../../docs/12-coding-agent-integration.md).
 
 ## Project
 
@@ -46,7 +46,7 @@
 
 ## Where to look
 
-- Process: `README.md`
+- Process: `docs/00-index.md`
 - Review rules: `19-read-only-code-review.md`
 - Evidence rules: `23-hallucination-prevention.md`
 - ADRs: `docs/adr/`

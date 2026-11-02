@@ -82,7 +82,7 @@ the agent use syntax the deployment runtime does not support.
 ### 3.2 Add the agent rules
 
 `AGENTS.md` at the repository root (plus `.github/copilot-instructions.md` for Visual Studio and
-JetBrains — see [chapter 29](../29-ide-setup.md)):
+JetBrains — see [chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## Python rules

@@ -1,6 +1,6 @@
 # Example PR verification workflow.
 # Copy to .github/workflows/verify.yml and replace the placeholder steps with the
-# commands that actually work in your repository. See 25-ci-cd-integration.md.
+# commands that actually work in your repository. See docs/25-ci-cd-integration.md.
 
 name: verify
 

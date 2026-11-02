@@ -482,4 +482,4 @@ flowchart LR
 ---
 
 **Previous:** [11 — Superpowers](./11-superpowers.md) ·
-**Next:** [13 — Language guides](./language-guides/README.md)
+**Next:** [13 — Language guides](../language-guides/README.md)

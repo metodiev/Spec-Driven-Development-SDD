@@ -638,7 +638,7 @@ flowchart LR
 - [Chapter 30 — IntelliJ IDEA](./30-ide-intellij.md) · [31 — VS Code](./31-ide-vscode.md) · [32 — Visual Studio](./32-ide-visual-studio.md)
 - [Chapter 33 — End-to-end walkthrough](./33-end-to-end-walkthrough.md)
 - [05 Spec Kit](./05-github-spec-kit.md) · [06 OpenSpec](./06-openspec.md) · [07 Kiro](./07-aws-kiro.md) · [08 BMAD](./08-bmad-method.md) · [09 Spec Kitty](./09-spec-kitty.md)
-- [templates/feature-spec.md](./templates/feature-spec.md) · [templates/verification-report.md](./templates/verification-report.md)
+- [templates/feature-spec.md](../templates/feature-spec.md) · [templates/verification-report.md](../templates/verification-report.md)
 
 ---
 

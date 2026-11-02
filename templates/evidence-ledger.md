@@ -76,4 +76,4 @@
 
 ---
 
-*Template version: 1.0 · See [chapter 23](../23-hallucination-prevention.md).*
+*Template version: 1.0 · See [chapter 23](../docs/23-hallucination-prevention.md).*

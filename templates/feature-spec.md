@@ -163,4 +163,4 @@
 
 ---
 
-*Template version: 1.0 · See [chapter 14](../14-feature-development.md) for usage guidance.*
+*Template version: 1.0 · See [chapter 14](../docs/14-feature-development.md) for usage guidance.*

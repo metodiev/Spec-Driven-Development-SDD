@@ -2,7 +2,7 @@
 """Example CI check: every acceptance criterion is referenced in the PR description.
 
 This checks *reference*, not correctness. Correctness is established by the
-verification report and independent review. See 25-ci-cd-integration.md.
+verification report and independent review. See docs/25-ci-cd-integration.md.
 
 Usage:
     python3 check_spec_traceability.py <spec.md> <pr-body.md> [--json]

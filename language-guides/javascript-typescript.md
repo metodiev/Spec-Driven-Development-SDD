@@ -84,7 +84,7 @@ dependency graphs, and the agent will read the wrong one.
 ### 3.2 Add the agent rules
 
 `AGENTS.md` (plus `.github/copilot-instructions.md` for Visual Studio and JetBrains — see
-[chapter 29](../29-ide-setup.md)):
+[chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## TypeScript rules

@@ -232,7 +232,7 @@ flowchart LR
 
 ### Architecture decision record
 
-See [`templates/architecture-decision-record.md`](./templates/architecture-decision-record.md).
+See [`templates/architecture-decision-record.md`](../templates/architecture-decision-record.md).
 An ADR is required when the decision is expensive to reverse, affects an external contract,
 or constrains future work.
 
@@ -385,7 +385,7 @@ flowchart LR
 
 ### Verification report shape
 
-See [`templates/verification-report.md`](./templates/verification-report.md).
+See [`templates/verification-report.md`](../templates/verification-report.md).
 
 ---
 

@@ -71,7 +71,7 @@ Source: `endoflife.date` API for each product. Re-check before planning upgrades
 | **PHP** | 8.5.x | 8.5, 8.4, 8.3 | 8.2 EOL 2026-12-31 |
 
 > **Library versions are not listed here on purpose.** They change weekly. Read the lockfile of
-> the repository you are working in — see [Repository discovery](../03-repository-discovery.md).
+> the repository you are working in — see [Repository discovery](../docs/03-repository-discovery.md).
 
 ## Guides
 
@@ -90,5 +90,5 @@ Source: `endoflife.date` API for each product. Re-check before planning upgrades
 
 ---
 
-**Previous:** [12 — Coding-agent integration](../12-coding-agent-integration.md) ·
+**Previous:** [12 — Coding-agent integration](../docs/12-coding-agent-integration.md) ·
 **Next:** [Java](./java.md)

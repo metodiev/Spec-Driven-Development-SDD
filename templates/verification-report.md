@@ -102,4 +102,4 @@
 
 ---
 
-*Template version: 1.0 · See [chapter 20](../20-testing-and-verification.md).*
+*Template version: 1.0 · See [chapter 20](../docs/20-testing-and-verification.md).*

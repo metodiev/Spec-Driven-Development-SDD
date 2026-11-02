@@ -280,7 +280,7 @@ flowchart LR
     A --> U3["Choose the agent mode"]
 ```
 
-Example skill front matter (content from [`prompts/read-only-code-reviewer.md`](./prompts/read-only-code-reviewer.md)):
+Example skill front matter (content from [`prompts/read-only-code-reviewer.md`](../prompts/read-only-code-reviewer.md)):
 
 ```markdown
 ---

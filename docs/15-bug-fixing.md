@@ -380,7 +380,7 @@ Never patch inside `vendor/` or `node_modules/` without a durable mechanism (pat
 
 ## 11. Bug report template usage
 
-See [`templates/bug-report.md`](./templates/bug-report.md). Minimum fields:
+See [`templates/bug-report.md`](../templates/bug-report.md). Minimum fields:
 
 ```markdown
 # Bug: <short title>
@@ -464,9 +464,9 @@ flowchart LR
 - [Chapter 20 — Testing and verification](./20-testing-and-verification.md)
 - [Chapter 21 — Security review](./21-security-review.md)
 - [Chapter 23 — Hallucination prevention](./23-hallucination-prevention.md)
-- [templates/bug-report.md](./templates/bug-report.md)
-- [prompts/bug-triage-agent.md](./prompts/bug-triage-agent.md)
-- [prompts/bug-fix-agent.md](./prompts/bug-fix-agent.md)
+- [templates/bug-report.md](../templates/bug-report.md)
+- [prompts/bug-triage-agent.md](../prompts/bug-triage-agent.md)
+- [prompts/bug-fix-agent.md](../prompts/bug-fix-agent.md)
 - Google SRE Book, *Managing Incidents* — <https://sre.google/sre-book/managing-incidents/>
 - *Debugging* (Agans) — systematic elimination
 - `git bisect` documentation — <https://git-scm.com/docs/git-bisect>

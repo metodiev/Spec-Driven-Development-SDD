@@ -278,7 +278,7 @@ gitGraph
 
 ## 7. Step 4 — Write the specification
 
-Use [`templates/feature-spec.md`](./templates/feature-spec.md). This is the complete artifact.
+Use [`templates/feature-spec.md`](../templates/feature-spec.md). This is the complete artifact.
 
 ```markdown
 # Spec: SDD-142 — Order export endpoint
@@ -1005,7 +1005,7 @@ The steps do not change. Only the commands and the test tooling do.
 | Integration | Failsafe + Testcontainers | pytest + Testcontainers | Testcontainers | Vitest + testcontainers | `go test -tags=integration` |
 | Static analysis | SpotBugs, PMD, Checkstyle | Ruff, mypy/Pyright | Roslyn analyzers, `dotnet format` | `tsc --noEmit`, ESLint | `go vet`, staticcheck, golangci-lint |
 | Perf | k6 / Gatling | k6 / pytest-benchmark | BenchmarkDotNet | k6 / Lighthouse | `go test -bench` |
-| Guide | [Java](./language-guides/java.md) | [Python](./language-guides/python.md) | [.NET](./language-guides/dotnet-csharp.md) | [JS/TS](./language-guides/javascript-typescript.md) | [Go](./language-guides/go.md) |
+| Guide | [Java](../language-guides/java.md) | [Python](../language-guides/python.md) | [.NET](../language-guides/dotnet-csharp.md) | [JS/TS](../language-guides/javascript-typescript.md) | [Go](../language-guides/go.md) |
 
 ---
 
@@ -1116,7 +1116,7 @@ flowchart TD
 - [Chapter 30 — IntelliJ IDEA](./30-ide-intellij.md)
 - [Chapter 31 — VS Code](./31-ide-vscode.md)
 - [Chapter 32 — Visual Studio](./32-ide-visual-studio.md)
-- Templates: [feature spec](./templates/feature-spec.md), [plan](./templates/implementation-plan.md), [verification](./templates/verification-report.md), [code review](./templates/code-review-report.md), [PR](./templates/pull-request-template.md)
+- Templates: [feature spec](../templates/feature-spec.md), [plan](../templates/implementation-plan.md), [verification](../templates/verification-report.md), [code review](../templates/code-review-report.md), [PR](../templates/pull-request-template.md)
 
 ---
 

@@ -525,7 +525,7 @@ git diff --cached --name-only | grep -Ei '(^|/)(node_modules|dist|build|target)/
 - [Chapter 02 — Engineering lifecycle](./02-engineering-lifecycle.md)
 - [Chapter 03 — Repository discovery](./03-repository-discovery.md)
 - [Chapter 24 — Multi-agent engineering](./24-multi-agent-engineering.md)
-- [templates/pull-request-template.md](./templates/pull-request-template.md)
+- [templates/pull-request-template.md](../templates/pull-request-template.md)
 - Conventional Commits — <https://www.conventionalcommits.org/>
 - Git documentation — <https://git-scm.com/docs>
 - `git worktree` — <https://git-scm.com/docs/git-worktree>

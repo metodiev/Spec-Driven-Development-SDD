@@ -335,7 +335,7 @@ flowchart TB
 - Approval Tests — <https://approvaltests.com/>
 - SonarQube metrics — <https://docs.sonarsource.com/>
 - [Chapter 17 — Specification review](./17-specification-review.md)
-- [templates/architecture-decision-record.md](./templates/architecture-decision-record.md)
+- [templates/architecture-decision-record.md](../templates/architecture-decision-record.md)
 
 ---
 

@@ -178,4 +178,4 @@ flowchart LR
 
 ---
 
-*Template version: 1.0 · See [chapter 14](../14-feature-development.md).*
+*Template version: 1.0 · See [chapter 14](../docs/14-feature-development.md).*

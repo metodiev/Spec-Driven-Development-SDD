@@ -64,4 +64,4 @@ Refs: `<issue/spec link>`
 
 ---
 
-*Template version: 1.0 · See [chapter 22](../22-git-and-commit-policy.md).*
+*Template version: 1.0 · See [chapter 22](../docs/22-git-and-commit-policy.md).*

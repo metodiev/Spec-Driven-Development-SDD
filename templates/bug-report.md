@@ -131,4 +131,4 @@
 
 ---
 
-*Template version: 1.0 · See [chapter 15](../15-bug-fixing.md) for the workflow.*
+*Template version: 1.0 · See [chapter 15](../docs/15-bug-fixing.md) for the workflow.*

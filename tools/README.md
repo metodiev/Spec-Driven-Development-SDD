@@ -48,7 +48,7 @@ node tools/check_mermaid.mjs . "$TMPDIR/mmcheck/node_modules"
 ## Adding a new chapter
 
 1. Create the Markdown file with a language tag on every fence.
-2. Add it to the chapter index in [`../README.md`](../00-index.md).
+2. Add it to the chapter index in [`docs/00-index.md`](../docs/00-index.md).
 3. Run `python3 tools/validate_docs.py` and, if Mermaid changed, the parser check.
 4. Verify every external link you add is the official source and note the version/date.
 

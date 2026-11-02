@@ -338,8 +338,8 @@ flowchart TD
 - [Chapter 02 — Engineering lifecycle](./02-engineering-lifecycle.md)
 - [Chapter 17 — Review without implementation](./17-specification-review.md)
 - [Chapter 22 — Git and commit policy](./22-git-and-commit-policy.md)
-- [templates/agent-role-definition.md](./templates/agent-role-definition.md)
-- [prompts/](./prompts/)
+- [templates/agent-role-definition.md](../templates/agent-role-definition.md)
+- [prompts/](../prompts/)
 - Spec Kitty multi-agent architecture — <https://github.com/spec-kitty/spec-kitty/blob/main/docs/architecture/multi-agent-orchestration.md>
 - BMAD multi-agent discussions — <https://docs.bmad-method.org/customize/run-multi-agent-discussions/>
 - Superpowers subagent-driven development — <https://github.com/obra/superpowers>

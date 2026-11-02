@@ -107,4 +107,4 @@ For each requirement, record the two-implementation test result.
 
 ---
 
-*Template version: 1.0 · See [chapter 17](../17-specification-review.md).*
+*Template version: 1.0 · See [chapter 17](../docs/17-specification-review.md).*

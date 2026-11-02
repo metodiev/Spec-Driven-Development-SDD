@@ -332,8 +332,8 @@ about the artifact's lifecycle, not by trusting the annotation's name.
 
 This chapter is process-only. Its rules are reflected in:
 
-- Every file under [`prompts/`](./prompts/)
-- [`templates/evidence-ledger.md`](./templates/evidence-ledger.md)
+- Every file under [`prompts/`](../prompts/)
+- [`templates/evidence-ledger.md`](../templates/evidence-ledger.md)
 - [Chapter 20 §10](./20-testing-and-verification.md) — verification report format
 - [Chapter 19 §4.6](./19-read-only-code-review.md) — evidence pass
 
@@ -357,8 +357,8 @@ This chapter is process-only. Its rules are reflected in:
 - [Chapter 19 — Read-only code review](./19-read-only-code-review.md)
 - [Chapter 20 — Testing and verification](./20-testing-and-verification.md)
 - [Chapter 24 — Multi-agent engineering](./24-multi-agent-engineering.md)
-- [templates/evidence-ledger.md](./templates/evidence-ledger.md)
-- [prompts/master-sdd-agent.md](./prompts/master-sdd-agent.md)
+- [templates/evidence-ledger.md](../templates/evidence-ledger.md)
+- [prompts/master-sdd-agent.md](../prompts/master-sdd-agent.md)
 - NIST AI Risk Management Framework — <https://www.nist.gov/itl/ai-risk-management-framework>
 - ISO/IEC/IEEE 29148 (requirements quality)
 - Google SRE Book, *Postmortem Culture* — <https://sre.google/sre-book/postmortem-culture/>

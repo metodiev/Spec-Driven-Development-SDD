@@ -310,9 +310,9 @@ See [chapter 21](./21-security-review.md) for the review procedure.
 
 - [Chapter 15 — Bug fixing](./15-bug-fixing.md)
 - [Chapter 17 §10 — Test review](./17-specification-review.md)
-- [templates/verification-report.md](./templates/verification-report.md)
-- [templates/evidence-ledger.md](./templates/evidence-ledger.md)
-- [prompts/test-verification-agent.md](./prompts/test-verification-agent.md)
+- [templates/verification-report.md](../templates/verification-report.md)
+- [templates/evidence-ledger.md](../templates/evidence-ledger.md)
+- [prompts/test-verification-agent.md](../prompts/test-verification-agent.md)
 - Test Pyramid — <https://martinfowler.com/articles/practical-test-pyramid.html>
 - *xUnit Test Patterns* (Meszaros)
 - *Property-Based Testing with PropEr, Erlang, and Elixir* (Hébert) — property-testing mindset

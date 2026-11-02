@@ -272,7 +272,7 @@ integration exists; team size is 2.
 **Review date:** 2027-05-01
 ```
 
-See [`templates/architecture-decision-record.md`](./templates/architecture-decision-record.md).
+See [`templates/architecture-decision-record.md`](../templates/architecture-decision-record.md).
 
 ---
 
@@ -318,8 +318,8 @@ See [`templates/architecture-decision-record.md`](./templates/architecture-decis
 - [Chapter 02 — Engineering lifecycle](./02-engineering-lifecycle.md)
 - [Chapter 17 — Review without implementation](./17-specification-review.md)
 - [Chapter 21 — Security review](./21-security-review.md)
-- [templates/architecture-decision-record.md](./templates/architecture-decision-record.md)
-- [prompts/architecture-reviewer.md](./prompts/architecture-reviewer.md)
+- [templates/architecture-decision-record.md](../templates/architecture-decision-record.md)
+- [prompts/architecture-reviewer.md](../prompts/architecture-reviewer.md)
 - C4 model — <https://c4model.com/>
 - arc42 — <https://arc42.org/>
 - *Software Architecture in Practice* (Bass, Clements, Kazman)

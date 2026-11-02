@@ -449,7 +449,7 @@ The command set above uses standard Git and shell utilities. Commands marked as 
 not executed against a target repository in this handbook (the repository is documentation-only),
 so treat the flags as **illustrative but standard**; verify with `--help` in your environment.
 Language-specific commands are documented per guide in
-[`language-guides/`](./language-guides/README.md).
+[`language-guides/`](../language-guides/README.md).
 
 ---
 

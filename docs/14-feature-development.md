@@ -82,7 +82,7 @@ assumptions, unknowns, and risks.
 
 ## 6. Step 3 — Specification
 
-Use [`templates/feature-spec.md`](./templates/feature-spec.md). The minimum viable spec has
+Use [`templates/feature-spec.md`](../templates/feature-spec.md). The minimum viable spec has
 seven parts:
 
 ```mermaid
@@ -149,7 +149,7 @@ flowchart LR
 
 ## 8. Step 5 — Plan
 
-Use [`templates/implementation-plan.md`](./templates/implementation-plan.md). The plan must be
+Use [`templates/implementation-plan.md`](../templates/implementation-plan.md). The plan must be
 reviewable without code.
 
 ```mermaid
@@ -373,10 +373,10 @@ Completion report with per-AC status. Never mark complete with `UNVERIFIED` crit
 - [Chapter 17 — Specification review](./17-specification-review.md)
 - [Chapter 19 — Read-only code review](./19-read-only-code-review.md)
 - [Chapter 20 — Testing and verification](./20-testing-and-verification.md)
-- [templates/feature-spec.md](./templates/feature-spec.md)
-- [prompts/implementation-agent.md](./prompts/implementation-agent.md)
+- [templates/feature-spec.md](../templates/feature-spec.md)
+- [prompts/implementation-agent.md](../prompts/implementation-agent.md)
 
 ---
 
-**Previous:** [13 — Language guides](./language-guides/README.md) ·
+**Previous:** [13 — Language guides](../language-guides/README.md) ·
 **Next:** [15 — Bug fixing](./15-bug-fixing.md)

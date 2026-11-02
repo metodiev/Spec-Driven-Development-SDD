@@ -107,7 +107,7 @@ can take 40 minutes of blocked writes on 50 million.
 ### 3.2 Add the agent rules
 
 `AGENTS.md` (plus `.github/copilot-instructions.md` if your project uses Copilot in any IDE — see
-[chapter 29](../29-ide-setup.md)):
+[chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## Database rules

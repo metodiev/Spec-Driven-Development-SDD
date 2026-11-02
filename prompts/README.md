@@ -69,8 +69,8 @@ The file already contains `name` and `description` front matter. Keep the `descr
 | Bug fix | bug-triage → bug-fix → read-only-code-reviewer |
 | Security-sensitive change | add security-reviewer after code review |
 | Architecture decision | architecture-reviewer + ADR |
-| Release | final-acceptance + release checklist ([chapter 22](../22-git-and-commit-policy.md)) |
+| Release | final-acceptance + release checklist ([chapter 22](../docs/22-git-and-commit-policy.md)) |
 
 ---
 
-**Back to index:** [00-index.md](../00-index.md)
+**Back to index:** [00-index.md](../docs/00-index.md)

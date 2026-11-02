@@ -96,7 +96,7 @@ kubeconform -v
 ### 3.2 Add the agent rules
 
 `AGENTS.md` (plus `.github/copilot-instructions.md` if the team uses Copilot — see
-[chapter 29](../29-ide-setup.md)):
+[chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## Infrastructure rules
@@ -490,4 +490,4 @@ jobs:
 ---
 
 **Previous:** [SQL](./sql.md) ·
-**Next:** [14 — Feature development](../14-feature-development.md)
+**Next:** [14 — Feature development](../docs/14-feature-development.md)

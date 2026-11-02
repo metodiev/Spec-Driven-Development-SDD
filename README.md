@@ -13,7 +13,7 @@ first, evidence-based implementation, independent read-only review, and verifiab
 | **Languages covered** | Java, Python, .NET/C#, JavaScript/TypeScript, Go, Rust, Kotlin, PHP, SQL, Infrastructure as Code |
 | **Agents covered** | GitHub Copilot, Claude Code, Codex, Cursor, Gemini CLI, AWS Kiro |
 | **Size** | 31 chapters (01–35, excluding 13) · 10 language guides · 10 templates · 11 role prompts (+ a review pack) · 399 diagrams |
-| **Start here** | [README.md](README.md) |
+| **Start here** | [docs/00-index.md](docs/00-index.md) |
 
 ---
 
@@ -410,9 +410,9 @@ flowchart TD
 
 | Take | Where |
 | --- | --- |
-| **A process you can adopt on Monday** | [Lifecycle](02-engineering-lifecycle.md) + [Feature development](14-feature-development.md) |
-| **A Git policy you can declare** | [Git and commit policy](22-git-and-commit-policy.md) — four modes, explicit permissions |
-| **Evidence rules that stop hallucinations** | [Evidence-based AI engineering](23-hallucination-prevention.md) |
+| **A process you can adopt on Monday** | [Lifecycle](docs/02-engineering-lifecycle.md) + [Feature development](docs/14-feature-development.md) |
+| **A Git policy you can declare** | [Git and commit policy](docs/22-git-and-commit-policy.md) — four modes, explicit permissions |
+| **Evidence rules that stop hallucinations** | [Evidence-based AI engineering](docs/23-hallucination-prevention.md) |
 | **Language-specific commands and failure modes** | [Language guides](language-guides/README.md) |
 | **Copy-paste artifacts** | [Templates](templates/README.md) + [Prompts](prompts/README.md) |
 
@@ -428,7 +428,7 @@ Stated plainly, because a playbook that overclaims is worse than none.
 | Run against your codebase | There is no application here to verify against |
 | Guarantee output quality | It increases the probability of correct, reviewable work — it does not replace engineering judgment |
 | Replace tests, scanners, or code review | It *coordinates* them; the tools still do the work |
-| Certify compliance | The [enterprise chapter](26-enterprise-reference-workflow.md) maps evidence to frameworks as an aid, not a certification |
+| Certify compliance | The [enterprise chapter](docs/26-enterprise-reference-workflow.md) maps evidence to frameworks as an aid, not a certification |
 | Keep versions current forever | Tool versions are a snapshot; re-verify before installing |
 
 > **Version drift is real.** Every version in this repository was checked on **2026-11-02** against
@@ -545,13 +545,13 @@ flowchart LR
 
 | Tool | Version verified | What it is best at |
 | --- | --- | --- |
-| [**GitHub Spec Kit**](05-github-spec-kit.md) | 1.2.5 | Structured artifact pipeline across many agents; constitution and optional gates |
-| [**OpenSpec**](06-openspec.md) | 1.16.0 | Brownfield delta specs that evolve an existing spec set; tool-agnostic |
-| [**AWS Kiro**](07-aws-kiro.md) | product docs | Integrated specs, steering, hooks, and parallel task waves |
-| [**BMAD Method**](08-bmad-method.md) | 6.12.4 (7.0 alpha) | Right-sized planning paths and named product/architecture/QA roles |
-| [**Spec Kitty**](09-spec-kitty.md) | CLI 3.2.7 | Governed multi-agent delivery with worktrees, lanes, and audit trail |
-| [**Ponytail**](10-ponytail.md) | 5.3.3 | Anti-over-engineering discipline and diff/repo review commands |
-| [**Superpowers**](11-superpowers.md) | 7.0.1 | TDD-first methodology with subagent-driven implementation |
+| [**GitHub Spec Kit**](docs/05-github-spec-kit.md) | 1.2.5 | Structured artifact pipeline across many agents; constitution and optional gates |
+| [**OpenSpec**](docs/06-openspec.md) | 1.16.0 | Brownfield delta specs that evolve an existing spec set; tool-agnostic |
+| [**AWS Kiro**](docs/07-aws-kiro.md) | product docs | Integrated specs, steering, hooks, and parallel task waves |
+| [**BMAD Method**](docs/08-bmad-method.md) | 6.12.4 (7.0 alpha) | Right-sized planning paths and named product/architecture/QA roles |
+| [**Spec Kitty**](docs/09-spec-kitty.md) | CLI 3.2.7 | Governed multi-agent delivery with worktrees, lanes, and audit trail |
+| [**Ponytail**](docs/10-ponytail.md) | 5.3.3 | Anti-over-engineering discipline and diff/repo review commands |
+| [**Superpowers**](docs/11-superpowers.md) | 7.0.1 | TDD-first methodology with subagent-driven implementation |
 
 ```mermaid
 quadrantChart
@@ -572,7 +572,7 @@ quadrantChart
 ```
 
 Coordinates are an author assessment for orientation, not measured data. Compare tools on the
-dimensions in the [tool comparison chapter](04-tool-comparison.md), not on a chart.
+dimensions in the [tool comparison chapter](docs/04-tool-comparison.md), not on a chart.
 
 ### Coding-agent harnesses
 
@@ -603,12 +603,12 @@ flowchart LR
 
 | Harness | Documented in |
 | --- | --- |
-| GitHub Copilot (VS Code) | [Agent integration](12-coding-agent-integration.md) |
-| Claude Code | [Agent integration](12-coding-agent-integration.md) |
-| OpenAI Codex | [Agent integration](12-coding-agent-integration.md) |
-| Cursor | [Agent integration](12-coding-agent-integration.md) |
-| Gemini CLI | [Agent integration](12-coding-agent-integration.md) |
-| AWS Kiro | [Kiro chapter](07-aws-kiro.md) |
+| GitHub Copilot (VS Code) | [Agent integration](docs/12-coding-agent-integration.md) |
+| Claude Code | [Agent integration](docs/12-coding-agent-integration.md) |
+| OpenAI Codex | [Agent integration](docs/12-coding-agent-integration.md) |
+| Cursor | [Agent integration](docs/12-coding-agent-integration.md) |
+| Gemini CLI | [Agent integration](docs/12-coding-agent-integration.md) |
+| AWS Kiro | [Kiro chapter](docs/07-aws-kiro.md) |
 
 ### Quality and security tooling referenced
 
@@ -697,16 +697,16 @@ sequenceDiagram
 
 **Five steps, in order:**
 
-1. Read [Fundamentals](01-fundamentals.md) and the
-   [Engineering lifecycle](02-engineering-lifecycle.md).
-2. Run [Repository discovery](03-repository-discovery.md) on your own project — never let an
+1. Read [Fundamentals](docs/01-fundamentals.md) and the
+   [Engineering lifecycle](docs/02-engineering-lifecycle.md).
+2. Run [Repository discovery](docs/03-repository-discovery.md) on your own project — never let an
    agent assume your stack.
-3. Declare a Git mode in [Git and commit policy](22-git-and-commit-policy.md).
+3. Declare a Git mode in [Git and commit policy](docs/22-git-and-commit-policy.md).
    **Start with Mode 2** (implement, do not commit).
 4. Copy the evidence rules from
-   [Evidence-based AI engineering](23-hallucination-prevention.md) into your agent
+   [Evidence-based AI engineering](docs/23-hallucination-prevention.md) into your agent
    instructions.
-5. Adopt **one** framework from [Tool comparison](04-tool-comparison.md) — not three.
+5. Adopt **one** framework from [Tool comparison](docs/04-tool-comparison.md) — not three.
 
 ### The four Git modes
 
@@ -735,9 +735,9 @@ overview; chapters 30–32 are dedicated, step-by-step guides.
 
 | IDE | Deep-dive chapter | Covers |
 | --- | --- | --- |
-| **IntelliJ IDEA** | [Chapter 30](30-ide-intellij.md) | Copilot, Claude Code, AI Assistant, run configs, HTTP client |
-| **VS Code** | [Chapter 31](31-ide-vscode.md) | Extensions, `applyTo`, tasks/launch, skills, prompts, agents |
-| **Visual Studio** | [Chapter 32](32-ide-visual-studio.md) | 17.10+ install, `AGENTS.md` limitation, Test Explorer, `.http` |
+| **IntelliJ IDEA** | [Chapter 30](docs/30-ide-intellij.md) | Copilot, Claude Code, AI Assistant, run configs, HTTP client |
+| **VS Code** | [Chapter 31](docs/31-ide-vscode.md) | Extensions, `applyTo`, tasks/launch, skills, prompts, agents |
+| **Visual Studio** | [Chapter 32](docs/32-ide-visual-studio.md) | 17.10+ install, `AGENTS.md` limitation, Test Explorer, `.http` |
 
 ```mermaid
 flowchart LR
@@ -767,7 +767,7 @@ flowchart LR
 
 ## 12. One ticket, one full cycle
 
-[Chapter 33](33-end-to-end-walkthrough.md) walks a single Jira ticket — *"add an order
+[Chapter 33](docs/33-end-to-end-walkthrough.md) walks a single Jira ticket — *"add an order
 export endpoint"* — from triage to release, showing every artifact.
 
 ```mermaid
@@ -809,7 +809,7 @@ flowchart TD
 
 ## 13. Six ways to build the same thing
 
-[Chapter 34](34-simple-project-examples.md) implements one small feature — an expense tracker with
+[Chapter 34](docs/34-simple-project-examples.md) implements one small feature — an expense tracker with
 integer-cent money, timezone-aware months, and a monthly total — six different ways, so you can
 compare real setup cost against real governance.
 
@@ -844,7 +844,7 @@ flowchart TD
 
 ## 14. Publishing to Confluence
 
-[Chapter 35](35-confluence-publishing.md) covers publishing the *right subset* of artifacts to a
+[Chapter 35](docs/35-confluence-publishing.md) covers publishing the *right subset* of artifacts to a
 wiki without creating a second source of truth.
 
 ```mermaid
@@ -881,30 +881,31 @@ conversion rules and a complete script.
 
 ## 15. Repository map
 
-Every chapter is a top-level file so the whole handbook is visible at a glance, without digging
-through folders.
+Chapters live in [`docs/`](docs/); reusable assets stay at the root so they are easy to find and
+copy into your own repository.
 
 ```text
 Spec-Driven-Development-SDD/
 ├── README.md                       ← you are here (orientation)
 ├── LICENSE                         MIT
-├── 00-index.md                     handbook index, learning path, validation log
 │
-├── 01-fundamentals.md              05–11 frameworks        17–21 reviews
-├── 02-engineering-lifecycle.md     12 agent integration    22 git policy
-├── 03-repository-discovery.md      14 feature delivery     23 hallucination prevention
-├── 04-tool-comparison.md           15 bug fixing           24 multi-agent
-│                                   16 refactoring          25 CI/CD
-│                                                           26 enterprise
-│                                                           27 troubleshooting
-│                                                           28 glossary
-├── 29-ide-setup.md                 overview + parity matrix
-├── 30-ide-intellij.md              IntelliJ IDEA deep dive
-├── 31-ide-vscode.md                VS Code deep dive
-├── 32-ide-visual-studio.md         Visual Studio deep dive
-├── 33-end-to-end-walkthrough.md    one Jira ticket, the whole cycle
-├── 34-simple-project-examples.md   the same feature, six ways
-├── 35-confluence-publishing.md     publish to a wiki without forking the truth
+├── docs/                           the handbook — 31 chapters
+│   ├── 00-index.md                 index, learning path, validation log
+│   ├── 01-fundamentals.md          05–11 frameworks        17–21 reviews
+│   ├── 02-engineering-lifecycle.md 12 agent integration    22 git policy
+│   ├── 03-repository-discovery.md  14 feature delivery     23 hallucination prevention
+│   ├── 04-tool-comparison.md       15 bug fixing           24 multi-agent
+│   │                               16 refactoring          25 CI/CD
+│   │                                                       26 enterprise
+│   │                                                       27 troubleshooting
+│   │                                                       28 glossary
+│   ├── 29-ide-setup.md             overview + parity matrix
+│   ├── 30-ide-intellij.md          IntelliJ IDEA deep dive
+│   ├── 31-ide-vscode.md            VS Code deep dive
+│   ├── 32-ide-visual-studio.md     Visual Studio deep dive
+│   ├── 33-end-to-end-walkthrough.md one Jira ticket, the whole cycle
+│   ├── 34-simple-project-examples.md the same feature, six ways
+│   └── 35-confluence-publishing.md  publish to a wiki without forking the truth
 │
 ├── language-guides/                chapter 13 — 10 guides + index
 ├── templates/                      10 artifact templates + index
@@ -915,46 +916,42 @@ Spec-Driven-Development-SDD/
 
 ```mermaid
 flowchart TD
-    ROOT["README.md<br/>introduction and orientation"]
-    IDX["00-index.md<br/>index and learning path"]
-    subgraph Core["Foundations 01–04"]
-        C1["Fundamentals"]
-        C2["Lifecycle"]
-        C3["Discovery"]
-        C4["Tool comparison"]
+    ROOT["README.md<br/>orientation"]
+    subgraph Docs["docs/ — the handbook"]
+        IDX["00-index.md"]
+        subgraph Core["Foundations 01–04"]
+            C1["Fundamentals"] 
+            C2["Lifecycle"]
+            C3["Discovery"]
+            C4["Tool comparison"]
+        end
+        subgraph Tools["Tools 05–12"]
+            T1["Frameworks 05–11"]
+            T2["Agent integration 12"]
+        end
+        subgraph Flow["Workflows 14–28"]
+            W1["Feature · Bug · Refactor"]
+            W2["Reviews 17–21"]
+            W3["Git · Evidence · Multi-agent · CI"]
+            W4["Enterprise · Troubleshooting · Glossary"]
+        end
+        subgraph Practice["Practice 29–35"]
+            P1["IDE setup 29–32"]
+            P2["Walkthrough 33"]
+            P3["Examples 34"]
+            P4["Confluence 35"]
+        end
     end
-    subgraph Tools["Tools 05–12"]
-        T1["Frameworks 05–11"]
-        T2["Agent integration 12"]
-    end
-    subgraph Lang["Language guides"]
-        L1["Java · Python · .NET · JS/TS"]
-        L2["Go · Rust · Kotlin · PHP · SQL · IaC"]
-    end
-    subgraph Flow["Workflows 14–25"]
-        W1["Feature · Bug · Refactor"]
-        W2["Reviews 17–21"]
-        W3["Git · Evidence · Multi-agent · CI"]
-    end
-    subgraph Ops["Operations 26–28"]
-        O1["Enterprise · Troubleshooting · Glossary"]
-    end
-    subgraph Practice["Practice 29–35"]
-        P1["IDE setup 29–32"]
-        P2["Walkthrough 33"]
-        P3["Examples 34"]
-        P4["Confluence 35"]
-    end
-    subgraph Assets["Reusable assets"]
-        A1["templates/"]
-        A2["prompts/"]
-        A3["examples/"]
-        A4["tools/"]
+    subgraph Assets["Reusable assets (root)"]
+        A1["language-guides/"]
+        A2["templates/"]
+        A3["prompts/"]
+        A4["examples/"]
+        A5["tools/"]
     end
     ROOT --> IDX
-    IDX --> Core --> Tools --> Lang --> Flow --> Ops --> Practice
-    Assets -.-> Core
-    Assets -.-> Flow
+    IDX --> Core --> Tools --> Flow --> Practice
+    Assets -.-> Docs
 ```
 
 ---
@@ -1001,7 +998,7 @@ it cannot.
 | Git mode for this repository | **Mode 1** — documentation only, no automatic commits |
 
 Tool versions are verified snapshots (see the table in
-[00-index.md](00-index.md#6-verified-sources-and-research-date)); re-verify before
+[00-index.md](docs/00-index.md#6-verified-sources-and-research-date)); re-verify before
 installing. External links point to official documentation and repositories; third-party content
 remains the property of its owners.
 

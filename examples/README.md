@@ -4,7 +4,7 @@ Configuration examples that are **not active** in this repository. They exist so
 and adapt them.
 
 > **These are not installed.** Nothing in this directory affects the repository's behavior.
-> Installing a framework is a separate, reviewed decision (see [chapter 04](../04-tool-comparison.md)).
+> Installing a framework is a separate, reviewed decision (see [chapter 04](../docs/04-tool-comparison.md)).
 
 | Example | Purpose |
 | --- | --- |
@@ -37,4 +37,4 @@ flowchart TD
 
 ---
 
-**Back to index:** [00-index.md](../00-index.md)
+**Back to index:** [00-index.md](../docs/00-index.md)

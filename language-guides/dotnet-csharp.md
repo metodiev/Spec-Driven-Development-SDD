@@ -87,7 +87,7 @@ and CI disagree about nullable and analyzer warnings.
 ### 3.2 Add the agent rules
 
 `AGENTS.md` (plus `.github/copilot-instructions.md`, which is the only repository-wide instruction
-file Visual Studio reads — see [chapter 29](../29-ide-setup.md)):
+file Visual Studio reads — see [chapter 29](../docs/29-ide-setup.md)):
 
 ```markdown
 ## .NET rules

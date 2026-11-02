@@ -221,7 +221,7 @@ Both satisfy the sentence. → Finding: define the authorization model explicitl
 | D-02 | HIGH | `down()` is a no-op | migration:41 `pass` | Implement drop, or document forward-fix and mark irreversible |
 ```
 
-See [SQL guide](./language-guides/sql.md) for the expand/contract pattern.
+See [SQL guide](../language-guides/sql.md) for the expand/contract pattern.
 
 ---
 
@@ -357,16 +357,16 @@ the suite still passes, the test does not prove the requirement.
 
 | Review | Prompt |
 | --- | --- |
-| Requirements | [`prompts/requirements-agent.md`](./prompts/requirements-agent.md) or [`review-prompts.md` §1](./prompts/review-prompts.md) |
-| Specification | [`prompts/specification-reviewer.md`](./prompts/specification-reviewer.md) |
-| Architecture | [`prompts/architecture-reviewer.md`](./prompts/architecture-reviewer.md) |
-| Database design | [`prompts/review-prompts.md` §4](./prompts/review-prompts.md) |
-| API | [`prompts/review-prompts.md` §5](./prompts/review-prompts.md) |
-| Security | [`prompts/security-reviewer.md`](./prompts/security-reviewer.md) |
-| Performance | [`prompts/review-prompts.md` §7](./prompts/review-prompts.md) |
-| Code | [`prompts/read-only-code-reviewer.md`](./prompts/read-only-code-reviewer.md) |
-| Test | [`prompts/review-prompts.md` §9](./prompts/review-prompts.md) |
-| Documentation | [`prompts/review-prompts.md` §10](./prompts/review-prompts.md) |
+| Requirements | [`prompts/requirements-agent.md`](../prompts/requirements-agent.md) or [`review-prompts.md` §1](../prompts/review-prompts.md) |
+| Specification | [`prompts/specification-reviewer.md`](../prompts/specification-reviewer.md) |
+| Architecture | [`prompts/architecture-reviewer.md`](../prompts/architecture-reviewer.md) |
+| Database design | [`prompts/review-prompts.md` §4](../prompts/review-prompts.md) |
+| API | [`prompts/review-prompts.md` §5](../prompts/review-prompts.md) |
+| Security | [`prompts/security-reviewer.md`](../prompts/security-reviewer.md) |
+| Performance | [`prompts/review-prompts.md` §7](../prompts/review-prompts.md) |
+| Code | [`prompts/read-only-code-reviewer.md`](../prompts/read-only-code-reviewer.md) |
+| Test | [`prompts/review-prompts.md` §9](../prompts/review-prompts.md) |
+| Documentation | [`prompts/review-prompts.md` §10](../prompts/review-prompts.md) |
 
 Every prompt in this handbook carries the same non-negotiables: read-only, evidence required,
 severity-ranked, no invented facts.
@@ -404,8 +404,8 @@ severity-ranked, no invented facts.
 - [Chapter 18 — Architecture review](./18-architecture-review.md)
 - [Chapter 19 — Read-only code review](./19-read-only-code-review.md)
 - [Chapter 21 — Security review](./21-security-review.md)
-- [templates/specification-review-report.md](./templates/specification-review-report.md)
-- [templates/code-review-report.md](./templates/code-review-report.md)
+- [templates/specification-review-report.md](../templates/specification-review-report.md)
+- [templates/code-review-report.md](../templates/code-review-report.md)
 - ISO/IEC/IEEE 29148 — requirement quality characteristics
 - *Software Architecture in Practice* (Bass, Clements, Kazman)
 

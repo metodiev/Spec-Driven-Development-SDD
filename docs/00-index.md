@@ -1,5 +1,8 @@
 # Spec-Driven Development Engineering Playbook
 
+> Part of the [Spec-Driven Development repository](../README.md). Start at the
+> [root README](../README.md) for the orientation, or read on for the full handbook.
+
 A production-oriented handbook for running software delivery with AI coding agents under
 specification control: specifications first, evidence-based implementation, independent
 review, and verifiable acceptance.
@@ -111,16 +114,16 @@ flowchart TD
 
 ### Language guides
 
-[Java](./language-guides/java.md) ·
-[Python](./language-guides/python.md) ·
-[.NET / C#](./language-guides/dotnet-csharp.md) ·
-[JavaScript / TypeScript](./language-guides/javascript-typescript.md) ·
-[Go](./language-guides/go.md) ·
-[Rust](./language-guides/rust.md) ·
-[Kotlin](./language-guides/kotlin.md) ·
-[PHP](./language-guides/php.md) ·
-[SQL](./language-guides/sql.md) ·
-[Infrastructure as Code](./language-guides/infrastructure-as-code.md)
+[Java](../language-guides/java.md) ·
+[Python](../language-guides/python.md) ·
+[.NET / C#](../language-guides/dotnet-csharp.md) ·
+[JavaScript / TypeScript](../language-guides/javascript-typescript.md) ·
+[Go](../language-guides/go.md) ·
+[Rust](../language-guides/rust.md) ·
+[Kotlin](../language-guides/kotlin.md) ·
+[PHP](../language-guides/php.md) ·
+[SQL](../language-guides/sql.md) ·
+[Infrastructure as Code](../language-guides/infrastructure-as-code.md)
 
 Each guide starts with a **§3 "Adopting SDD in this stack"** walkthrough: toolchain verification,
 agent rules, a first change step by step, verification commands, and adoption pitfalls.
@@ -159,12 +162,12 @@ agent rules, a first change step by step, verification commands, and adoption pi
 
 ### Reusable assets
 
-- [`templates/`](./templates/) — feature spec, bug report, ADR, review reports, evidence ledger, PR template, agent role definition.
-- [`prompts/`](./prompts/) — copy-paste prompts for each agent role, all carrying the evidence rules.
-- [`examples/`](./examples/) — configuration examples, clearly separated from live configuration.
-- [`tools/validate_docs.py`](./tools/validate_docs.py) — dependency-free validator for links, code fences, YAML/JSON examples, and Mermaid structure.
-- [`tools/check_mermaid.mjs`](./tools/check_mermaid.mjs) — optional real Mermaid parser check (Node + `mermaid` + `jsdom`, installed outside the repo).
-- [`tools/README.md`](./tools/README.md) — what each check proves and what it cannot.
+- [`templates/`](../templates/) — feature spec, bug report, ADR, review reports, evidence ledger, PR template, agent role definition.
+- [`prompts/`](../prompts/) — copy-paste prompts for each agent role, all carrying the evidence rules.
+- [`examples/`](../examples/) — configuration examples, clearly separated from live configuration.
+- [`tools/validate_docs.py`](../tools/validate_docs.py) — dependency-free validator for links, code fences, YAML/JSON examples, and Mermaid structure.
+- [`tools/check_mermaid.mjs`](../tools/check_mermaid.mjs) — optional real Mermaid parser check (Node + `mermaid` + `jsdom`, installed outside the repo).
+- [`tools/README.md`](../tools/README.md) — what each check proves and what it cannot.
 
 ---
 
@@ -299,6 +302,6 @@ Checks actually executed on **2026-11-02** against this working tree. Re-run the
 
 ## License
 
-Content in this repository is licensed under the terms in [LICENSE](LICENSE).
+Content in this repository is licensed under the terms in [LICENSE](../LICENSE).
 Third-party tool names and documentation remain the property of their respective owners;
 links are provided for reference, not redistribution.

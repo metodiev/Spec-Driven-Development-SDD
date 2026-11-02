@@ -75,4 +75,4 @@
 
 ---
 
-*Template version: 1.0 · See [chapter 19](../19-read-only-code-review.md).*
+*Template version: 1.0 · See [chapter 19](../docs/19-read-only-code-review.md).*

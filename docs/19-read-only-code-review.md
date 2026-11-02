@@ -362,8 +362,8 @@ grep -rn "old_symbol" . --exclude-dir=.git --exclude-dir=node_modules
 - [Chapter 17 — Review without implementation](./17-specification-review.md)
 - [Chapter 20 — Testing and verification](./20-testing-and-verification.md)
 - [Chapter 23 — Hallucination prevention](./23-hallucination-prevention.md)
-- [templates/code-review-report.md](./templates/code-review-report.md)
-- [prompts/read-only-code-reviewer.md](./prompts/read-only-code-reviewer.md)
+- [templates/code-review-report.md](../templates/code-review-report.md)
+- [prompts/read-only-code-reviewer.md](../prompts/read-only-code-reviewer.md)
 - Google *Code Review Developer Guide* — <https://google.github.io/eng-practices/review/>
 
 ---

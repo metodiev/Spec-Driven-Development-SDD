@@ -113,4 +113,4 @@ flowchart LR
 
 ---
 
-*Template version: 1.0 · See [chapter 18](../18-architecture-review.md).*
+*Template version: 1.0 · See [chapter 18](../docs/18-architecture-review.md).*

@@ -126,4 +126,4 @@ Every claim must be one of:
 
 ---
 
-*Template version: 1.0 · See [chapter 24](../24-multi-agent-engineering.md).*
+*Template version: 1.0 · See [chapter 24](../docs/24-multi-agent-engineering.md).*

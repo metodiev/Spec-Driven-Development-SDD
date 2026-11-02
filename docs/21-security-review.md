@@ -333,7 +333,7 @@ container with the repository mounted read-only.
 
 - [Chapter 17 — Review without implementation](./17-specification-review.md)
 - [Chapter 25 — CI/CD integration](./25-ci-cd-integration.md)
-- [prompts/security-reviewer.md](./prompts/security-reviewer.md)
+- [prompts/security-reviewer.md](../prompts/security-reviewer.md)
 - OWASP Top 10 — <https://owasp.org/www-project-top-ten/>
 - OWASP ASVS — <https://owasp.org/www-project-application-security-verification-standard/>
 - OWASP Cheat Sheet Series — <https://cheatsheetseries.owasp.org/>
