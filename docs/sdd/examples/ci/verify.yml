@@ -1,0 +1,66 @@
+# Example PR verification workflow.
+# Copy to .github/workflows/verify.yml and replace the placeholder steps with the
+# commands that actually work in your repository. See docs/sdd/25-ci-cd-integration.md.
+
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  artifacts:
+    name: Documentation and spec traceability
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate documentation
+        run: python3 docs/sdd/tools/validate_docs.py
+      - name: Check acceptance-criteria coverage
+        if: hashFiles('specs/*/spec.md') != ''
+        run: |
+          for spec in specs/*/spec.md; do
+            python3 docs/sdd/examples/tools/check_spec_traceability.py "$spec" "${{ github.event.pull_request.body }}"
+          done
+
+  verify:
+    name: Build, test, analyze
+    runs-on: ubuntu-latest
+    needs: artifacts
+    steps:
+      - uses: actions/checkout@v4
+      # Replace the following block with your project's real setup and commands.
+      - name: Install dependencies
+        run: echo "replace with: npm ci / uv sync --frozen / ./mvnw -B verify -DskipTests"
+      - name: Build
+        run: echo "replace with the project build command"
+      - name: Test
+        run: echo "replace with the project test command"
+      - name: Static analysis
+        run: echo "replace with lint / type-check / analyzer command"
+
+  security:
+    name: Security and supply chain
+    runs-on: ubuntu-latest
+    needs: artifacts
+    steps:
+      - uses: actions/checkout@v4
+      - name: Filesystem and secret scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true

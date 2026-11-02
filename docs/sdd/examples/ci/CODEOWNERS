@@ -1,0 +1,25 @@
+# CODEOWNERS (example)
+# Copy to .github/CODEOWNERS and replace the teams.
+# See docs/sdd/22-git-and-commit-policy.md
+
+# Default owner for everything in the repo
+*                       @your-org/engineering
+
+# Documentation and process
+/docs/                  @your-org/architecture
+docs/sdd/               @your-org/architecture
+
+# CI and tooling must be reviewed by the platform team
+/.github/workflows/     @your-org/platform
+/.github/CODEOWNERS     @your-org/platform
+docs/sdd/tools/         @your-org/platform
+
+# Infrastructure and security-sensitive paths
+/infra/                 @your-org/platform @your-org/security
+/terraform/             @your-org/platform @your-org/security
+/deploy/                @your-org/platform @your-org/security
+
+# Authentication, payments, and data access
+/src/auth/              @your-org/security
+/src/payments/          @your-org/security @your-org/payments
+/src/db/migrations/     @your-org/dba
