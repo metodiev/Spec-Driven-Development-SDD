@@ -12,8 +12,8 @@ first, evidence-based implementation, independent read-only review, and verifiab
 | **Who it is for** | Engineers, architects, tech leads, platform teams, and security reviewers using AI agents |
 | **Languages covered** | Java, Python, .NET/C#, JavaScript/TypeScript, Go, Rust, Kotlin, PHP, SQL, Infrastructure as Code |
 | **Agents covered** | GitHub Copilot, Claude Code, Codex, Cursor, Gemini CLI, AWS Kiro |
-| **Size** | 29 chapters · 10 language guides · 10 templates · 11 role prompts (+ a review pack) · 362 diagrams |
-| **Start here** | [docs/sdd/README.md](docs/sdd/README.md) |
+| **Size** | 31 chapters (01–35, excluding 13) · 10 language guides · 10 templates · 11 role prompts (+ a review pack) · 399 diagrams |
+| **Start here** | [README.md](README.md) |
 
 ---
 
@@ -31,9 +31,11 @@ first, evidence-based implementation, independent read-only review, and verifiab
 10. [Quick start](#10-quick-start)
 11. [Where SDD runs: IDE setup](#11-where-sdd-runs-ide-setup)
 12. [One ticket, one full cycle](#12-one-ticket-one-full-cycle)
-13. [Repository map](#13-repository-map)
-14. [Validate the documentation](#14-validate-the-documentation)
-15. [Repository status](#repository-status)
+13. [Six ways to build the same thing](#13-six-ways-to-build-the-same-thing)
+14. [Publishing to Confluence](#14-publishing-to-confluence)
+15. [Repository map](#15-repository-map)
+16. [Validate the documentation](#16-validate-the-documentation)
+17. [Repository status](#repository-status)
 
 ---
 
@@ -408,11 +410,11 @@ flowchart TD
 
 | Take | Where |
 | --- | --- |
-| **A process you can adopt on Monday** | [Lifecycle](docs/sdd/02-engineering-lifecycle.md) + [Feature development](docs/sdd/14-feature-development.md) |
-| **A Git policy you can declare** | [Git and commit policy](docs/sdd/22-git-and-commit-policy.md) — four modes, explicit permissions |
-| **Evidence rules that stop hallucinations** | [Evidence-based AI engineering](docs/sdd/23-hallucination-prevention.md) |
-| **Language-specific commands and failure modes** | [Language guides](docs/sdd/language-guides/README.md) |
-| **Copy-paste artifacts** | [Templates](docs/sdd/templates/README.md) + [Prompts](docs/sdd/prompts/README.md) |
+| **A process you can adopt on Monday** | [Lifecycle](02-engineering-lifecycle.md) + [Feature development](14-feature-development.md) |
+| **A Git policy you can declare** | [Git and commit policy](22-git-and-commit-policy.md) — four modes, explicit permissions |
+| **Evidence rules that stop hallucinations** | [Evidence-based AI engineering](23-hallucination-prevention.md) |
+| **Language-specific commands and failure modes** | [Language guides](language-guides/README.md) |
+| **Copy-paste artifacts** | [Templates](templates/README.md) + [Prompts](prompts/README.md) |
 
 ---
 
@@ -426,7 +428,7 @@ Stated plainly, because a playbook that overclaims is worse than none.
 | Run against your codebase | There is no application here to verify against |
 | Guarantee output quality | It increases the probability of correct, reviewable work — it does not replace engineering judgment |
 | Replace tests, scanners, or code review | It *coordinates* them; the tools still do the work |
-| Certify compliance | The [enterprise chapter](docs/sdd/26-enterprise-reference-workflow.md) maps evidence to frameworks as an aid, not a certification |
+| Certify compliance | The [enterprise chapter](26-enterprise-reference-workflow.md) maps evidence to frameworks as an aid, not a certification |
 | Keep versions current forever | Tool versions are a snapshot; re-verify before installing |
 
 > **Version drift is real.** Every version in this repository was checked on **2026-11-02** against
@@ -493,16 +495,16 @@ mindmap
 
 | Language | Runtime focus | Verified in the guide |
 | --- | --- | --- |
-| [**Java**](docs/sdd/language-guides/java.md) | 8, 11, 17, 21, 25 LTS; Maven and Gradle | Spring Boot, Spring Security, JPA, Kafka, Flyway/Liquibase, JUnit 5, Mockito, Testcontainers |
-| [**Python**](docs/sdd/language-guides/python.md) | 3.11–3.15 | uv/Poetry, FastAPI/Django/Flask, Pydantic, pytest, mypy/Pyright, Ruff, data and ML |
-| [**.NET / C#**](docs/sdd/language-guides/dotnet-csharp.md) | .NET 10 LTS and 8 | ASP.NET Core, EF Core, xUnit/NUnit, nullable reference types, Roslyn analyzers |
-| [**JavaScript / TypeScript**](docs/sdd/language-guides/javascript-typescript.md) | Node 26 LTS, 24, 22 | React, Next.js, NestJS, Express, Jest/Vitest, Playwright, ESLint |
-| [**Go**](docs/sdd/language-guides/go.md) | 1.27, 1.26 | Modules, error wrapping, context, concurrency, race detector, fuzzing, govulncheck |
-| [**Rust**](docs/sdd/language-guides/rust.md) | Rolling stable (1.99) | Cargo workspaces, MSRV, ownership, async, Clippy, Miri, cargo-audit/deny |
-| [**Kotlin**](docs/sdd/language-guides/kotlin.md) | 2.4 | Coroutines, flows, Ktor, Spring, JUnit 5/Kotest, detekt, ktlint |
-| [**PHP**](docs/sdd/language-guides/php.md) | 8.5, 8.4, 8.3 | Composer, PSR, Symfony/Laravel, PHPUnit, PHPStan, Psalm, PHP-CS-Fixer |
-| [**SQL**](docs/sdd/language-guides/sql.md) | PostgreSQL, MySQL, SQL Server, Oracle | Migrations, locking, query plans, backfills, expand/contract, rollback |
-| [**Infrastructure as Code**](docs/sdd/language-guides/infrastructure-as-code.md) | Terraform/OpenTofu, Ansible, Kubernetes | Plan analysis, drift, blast radius, policy-as-code, promotion |
+| [**Java**](language-guides/java.md) | 8, 11, 17, 21, 25 LTS; Maven and Gradle | Spring Boot, Spring Security, JPA, Kafka, Flyway/Liquibase, JUnit 5, Mockito, Testcontainers |
+| [**Python**](language-guides/python.md) | 3.11–3.15 | uv/Poetry, FastAPI/Django/Flask, Pydantic, pytest, mypy/Pyright, Ruff, data and ML |
+| [**.NET / C#**](language-guides/dotnet-csharp.md) | .NET 10 LTS and 8 | ASP.NET Core, EF Core, xUnit/NUnit, nullable reference types, Roslyn analyzers |
+| [**JavaScript / TypeScript**](language-guides/javascript-typescript.md) | Node 26 LTS, 24, 22 | React, Next.js, NestJS, Express, Jest/Vitest, Playwright, ESLint |
+| [**Go**](language-guides/go.md) | 1.27, 1.26 | Modules, error wrapping, context, concurrency, race detector, fuzzing, govulncheck |
+| [**Rust**](language-guides/rust.md) | Rolling stable (1.99) | Cargo workspaces, MSRV, ownership, async, Clippy, Miri, cargo-audit/deny |
+| [**Kotlin**](language-guides/kotlin.md) | 2.4 | Coroutines, flows, Ktor, Spring, JUnit 5/Kotest, detekt, ktlint |
+| [**PHP**](language-guides/php.md) | 8.5, 8.4, 8.3 | Composer, PSR, Symfony/Laravel, PHPUnit, PHPStan, Psalm, PHP-CS-Fixer |
+| [**SQL**](language-guides/sql.md) | PostgreSQL, MySQL, SQL Server, Oracle | Migrations, locking, query plans, backfills, expand/contract, rollback |
+| [**Infrastructure as Code**](language-guides/infrastructure-as-code.md) | Terraform/OpenTofu, Ansible, Kubernetes | Plan analysis, drift, blast radius, policy-as-code, promotion |
 
 Every guide answers the same eight questions, so you can read the one that applies to your stack and
 skip the rest:
@@ -543,13 +545,13 @@ flowchart LR
 
 | Tool | Version verified | What it is best at |
 | --- | --- | --- |
-| [**GitHub Spec Kit**](docs/sdd/05-github-spec-kit.md) | 1.2.5 | Structured artifact pipeline across many agents; constitution and optional gates |
-| [**OpenSpec**](docs/sdd/06-openspec.md) | 1.16.0 | Brownfield delta specs that evolve an existing spec set; tool-agnostic |
-| [**AWS Kiro**](docs/sdd/07-aws-kiro.md) | product docs | Integrated specs, steering, hooks, and parallel task waves |
-| [**BMAD Method**](docs/sdd/08-bmad-method.md) | 6.12.4 (7.0 alpha) | Right-sized planning paths and named product/architecture/QA roles |
-| [**Spec Kitty**](docs/sdd/09-spec-kitty.md) | CLI 3.2.7 | Governed multi-agent delivery with worktrees, lanes, and audit trail |
-| [**Ponytail**](docs/sdd/10-ponytail.md) | 5.3.3 | Anti-over-engineering discipline and diff/repo review commands |
-| [**Superpowers**](docs/sdd/11-superpowers.md) | 7.0.1 | TDD-first methodology with subagent-driven implementation |
+| [**GitHub Spec Kit**](05-github-spec-kit.md) | 1.2.5 | Structured artifact pipeline across many agents; constitution and optional gates |
+| [**OpenSpec**](06-openspec.md) | 1.16.0 | Brownfield delta specs that evolve an existing spec set; tool-agnostic |
+| [**AWS Kiro**](07-aws-kiro.md) | product docs | Integrated specs, steering, hooks, and parallel task waves |
+| [**BMAD Method**](08-bmad-method.md) | 6.12.4 (7.0 alpha) | Right-sized planning paths and named product/architecture/QA roles |
+| [**Spec Kitty**](09-spec-kitty.md) | CLI 3.2.7 | Governed multi-agent delivery with worktrees, lanes, and audit trail |
+| [**Ponytail**](10-ponytail.md) | 5.3.3 | Anti-over-engineering discipline and diff/repo review commands |
+| [**Superpowers**](11-superpowers.md) | 7.0.1 | TDD-first methodology with subagent-driven implementation |
 
 ```mermaid
 quadrantChart
@@ -570,7 +572,7 @@ quadrantChart
 ```
 
 Coordinates are an author assessment for orientation, not measured data. Compare tools on the
-dimensions in the [tool comparison chapter](docs/sdd/04-tool-comparison.md), not on a chart.
+dimensions in the [tool comparison chapter](04-tool-comparison.md), not on a chart.
 
 ### Coding-agent harnesses
 
@@ -601,12 +603,12 @@ flowchart LR
 
 | Harness | Documented in |
 | --- | --- |
-| GitHub Copilot (VS Code) | [Agent integration](docs/sdd/12-coding-agent-integration.md) |
-| Claude Code | [Agent integration](docs/sdd/12-coding-agent-integration.md) |
-| OpenAI Codex | [Agent integration](docs/sdd/12-coding-agent-integration.md) |
-| Cursor | [Agent integration](docs/sdd/12-coding-agent-integration.md) |
-| Gemini CLI | [Agent integration](docs/sdd/12-coding-agent-integration.md) |
-| AWS Kiro | [Kiro chapter](docs/sdd/07-aws-kiro.md) |
+| GitHub Copilot (VS Code) | [Agent integration](12-coding-agent-integration.md) |
+| Claude Code | [Agent integration](12-coding-agent-integration.md) |
+| OpenAI Codex | [Agent integration](12-coding-agent-integration.md) |
+| Cursor | [Agent integration](12-coding-agent-integration.md) |
+| Gemini CLI | [Agent integration](12-coding-agent-integration.md) |
+| AWS Kiro | [Kiro chapter](07-aws-kiro.md) |
 
 ### Quality and security tooling referenced
 
@@ -695,16 +697,16 @@ sequenceDiagram
 
 **Five steps, in order:**
 
-1. Read [Fundamentals](docs/sdd/01-fundamentals.md) and the
-   [Engineering lifecycle](docs/sdd/02-engineering-lifecycle.md).
-2. Run [Repository discovery](docs/sdd/03-repository-discovery.md) on your own project — never let an
+1. Read [Fundamentals](01-fundamentals.md) and the
+   [Engineering lifecycle](02-engineering-lifecycle.md).
+2. Run [Repository discovery](03-repository-discovery.md) on your own project — never let an
    agent assume your stack.
-3. Declare a Git mode in [Git and commit policy](docs/sdd/22-git-and-commit-policy.md).
+3. Declare a Git mode in [Git and commit policy](22-git-and-commit-policy.md).
    **Start with Mode 2** (implement, do not commit).
 4. Copy the evidence rules from
-   [Evidence-based AI engineering](docs/sdd/23-hallucination-prevention.md) into your agent
+   [Evidence-based AI engineering](23-hallucination-prevention.md) into your agent
    instructions.
-5. Adopt **one** framework from [Tool comparison](docs/sdd/04-tool-comparison.md) — not three.
+5. Adopt **one** framework from [Tool comparison](04-tool-comparison.md) — not three.
 
 ### The four Git modes
 
@@ -728,8 +730,14 @@ flowchart TD
 
 ## 11. Where SDD runs: IDE setup
 
-The repository supplies the contract files; the IDE supplies the ergonomics. [Chapter 29](docs/sdd/29-ide-setup.md)
-covers IntelliJ IDEA, VS Code, and Visual Studio step by step.
+The repository supplies the contract files; the IDE supplies the ergonomics. Chapter 29 is the
+overview; chapters 30–32 are dedicated, step-by-step guides.
+
+| IDE | Deep-dive chapter | Covers |
+| --- | --- | --- |
+| **IntelliJ IDEA** | [Chapter 30](30-ide-intellij.md) | Copilot, Claude Code, AI Assistant, run configs, HTTP client |
+| **VS Code** | [Chapter 31](31-ide-vscode.md) | Extensions, `applyTo`, tasks/launch, skills, prompts, agents |
+| **Visual Studio** | [Chapter 32](32-ide-visual-studio.md) | 17.10+ install, `AGENTS.md` limitation, Test Explorer, `.http` |
 
 ```mermaid
 flowchart LR
@@ -759,7 +767,7 @@ flowchart LR
 
 ## 12. One ticket, one full cycle
 
-[Chapter 30](docs/sdd/30-end-to-end-walkthrough.md) walks a single Jira ticket — *"add an order
+[Chapter 33](33-end-to-end-walkthrough.md) walks a single Jira ticket — *"add an order
 export endpoint"* — from triage to release, showing every artifact.
 
 ```mermaid
@@ -799,55 +807,116 @@ flowchart TD
 
 ---
 
-## 13. Repository map
+## 13. Six ways to build the same thing
+
+[Chapter 34](34-simple-project-examples.md) implements one small feature — an expense tracker with
+integer-cent money, timezone-aware months, and a monthly total — six different ways, so you can
+compare real setup cost against real governance.
+
+```mermaid
+flowchart TD
+    Q1{"Team size and<br/>tool appetite?"}
+    Q1 -->|solo, minimal| A["1 · Manual SDD<br/>no framework"]
+    Q1 -->|small team, one agent| B["2 · Spec Kit"]
+    Q1 -->|existing spec set| C["3 · OpenSpec"]
+    Q1 -->|wants roles and options| D["4 · BMAD"]
+    Q1 -->|already in Kiro| E["5 · Kiro"]
+    Q1 -->|parallel agents, audit| F["6 · Spec Kitty"]
+    A --> L["Lightweight path<br/>for tiny changes"]
+    B --> L
+    C --> L
+    D --> L
+    E --> L
+    F --> L
+```
+
+| # | Approach | Setup | Best for |
+| --- | --- | --- | --- |
+| 1 | Manual SDD | none | Learning the discipline; no new tooling |
+| 2 | Spec Kit | ~1 h | Teams wanting gates and multi-agent support |
+| 3 | OpenSpec | ~30 min | Evolving an existing spec set (delta specs) |
+| 4 | BMAD | ~30 min | Role-based planning at the right depth |
+| 5 | Kiro | minutes if already adopted | Integrated specs, steering, hooks |
+| 6 | Spec Kitty | 1–2 h | Parallel agents with lanes and an audit trail |
+
+> **All six produce the same three things:** a testable spec, a task list traceable to it, and
+> evidence per acceptance criterion. Everything else is ergonomics.
+
+## 14. Publishing to Confluence
+
+[Chapter 35](35-confluence-publishing.md) covers publishing the *right subset* of artifacts to a
+wiki without creating a second source of truth.
+
+```mermaid
+flowchart LR
+    subgraph Repo["Repository — source of truth"]
+        R1["spec.md"]
+        R2["plan.md + ADR"]
+        R3["verification.md"]
+    end
+    subgraph Sync["Controlled publish"]
+        S1["Convert"]
+        S2["Push pages"]
+        S3["Attach diagrams"]
+    end
+    subgraph Conf["Confluence"]
+        C1["Space page tree"]
+    end
+    Repo --> Sync --> Conf
+    Conf -.->|"generated mirror<br/>never edited by hand"| C1
+```
+
+| Model | What goes to the wiki | Drift risk |
+| --- | --- | --- |
+| **Mirror** | Full artifact text, generated | High unless automated |
+| **Index** | Title, owner, status, links to the repo | Low |
+| **Excerpt** | Problem, goals, AC table, status | Medium |
+
+Verified API surface: `POST /wiki/api/v2/pages` (requires `spaceId`; body representation
+`storage`, `atlas_doc_format`, or `wiki`), `PUT /wiki/api/v2/pages/{id}` (requires `version.number`
+= current + 1), and v1 attachment upload for rendered Mermaid SVGs. See the chapter for the
+conversion rules and a complete script.
+
+---
+
+## 15. Repository map
+
+Every chapter is a top-level file so the whole handbook is visible at a glance, without digging
+through folders.
 
 ```text
 Spec-Driven-Development-SDD/
-├── README.md                        ← you are here
-├── LICENSE                          MIT
-└── docs/
-    └── sdd/
-        ├── README.md                handbook index, learning path, validation log
-        ├── 01-fundamentals.md
-        ├── 02-engineering-lifecycle.md
-        ├── 03-repository-discovery.md
-        ├── 04-tool-comparison.md
-        ├── 05-github-spec-kit.md
-        ├── 06-openspec.md
-        ├── 07-aws-kiro.md
-        ├── 08-bmad-method.md
-        ├── 09-spec-kitty.md
-        ├── 10-ponytail.md
-        ├── 11-superpowers.md
-        ├── 12-coding-agent-integration.md
-        ├── language-guides/         chapter 13 — 10 guides + index
-        ├── 14-feature-development.md
-        ├── 15-bug-fixing.md
-        ├── 16-refactoring.md
-        ├── 17-specification-review.md
-        ├── 18-architecture-review.md
-        ├── 19-read-only-code-review.md
-        ├── 20-testing-and-verification.md
-        ├── 21-security-review.md
-        ├── 22-git-and-commit-policy.md
-        ├── 23-hallucination-prevention.md
-        ├── 24-multi-agent-engineering.md
-        ├── 25-ci-cd-integration.md
-        ├── 26-enterprise-reference-workflow.md
-        ├── 27-troubleshooting.md
-        ├── 28-glossary.md
-        ├── 29-ide-setup.md          IntelliJ IDEA · VS Code · Visual Studio
-        ├── 30-end-to-end-walkthrough.md   one Jira ticket, the whole cycle
-        ├── templates/               10 artifact templates + index
-        ├── prompts/                 11 role prompts + review pack + index
-        ├── examples/                non-active agent/CI examples
-        └── tools/                   validators and their documentation
+├── README.md                       ← you are here (orientation)
+├── LICENSE                         MIT
+├── 00-index.md                     handbook index, learning path, validation log
+│
+├── 01-fundamentals.md              05–11 frameworks        17–21 reviews
+├── 02-engineering-lifecycle.md     12 agent integration    22 git policy
+├── 03-repository-discovery.md      14 feature delivery     23 hallucination prevention
+├── 04-tool-comparison.md           15 bug fixing           24 multi-agent
+│                                   16 refactoring          25 CI/CD
+│                                                           26 enterprise
+│                                                           27 troubleshooting
+│                                                           28 glossary
+├── 29-ide-setup.md                 overview + parity matrix
+├── 30-ide-intellij.md              IntelliJ IDEA deep dive
+├── 31-ide-vscode.md                VS Code deep dive
+├── 32-ide-visual-studio.md         Visual Studio deep dive
+├── 33-end-to-end-walkthrough.md    one Jira ticket, the whole cycle
+├── 34-simple-project-examples.md   the same feature, six ways
+├── 35-confluence-publishing.md     publish to a wiki without forking the truth
+│
+├── language-guides/                chapter 13 — 10 guides + index
+├── templates/                      10 artifact templates + index
+├── prompts/                        11 role prompts + review pack + index
+├── examples/                       non-active agent/CI examples
+└── tools/                          validators and their documentation
 ```
 
 ```mermaid
 flowchart TD
     ROOT["README.md<br/>introduction and orientation"]
-    IDX["docs/sdd/README.md<br/>index and learning path"]
+    IDX["00-index.md<br/>index and learning path"]
     subgraph Core["Foundations 01–04"]
         C1["Fundamentals"]
         C2["Lifecycle"]
@@ -870,9 +939,11 @@ flowchart TD
     subgraph Ops["Operations 26–28"]
         O1["Enterprise · Troubleshooting · Glossary"]
     end
-    subgraph Practice["Practice 29–30"]
-        P1["IDE setup"]
-        P2["Jira ticket walkthrough"]
+    subgraph Practice["Practice 29–35"]
+        P1["IDE setup 29–32"]
+        P2["Walkthrough 33"]
+        P3["Examples 34"]
+        P4["Confluence 35"]
     end
     subgraph Assets["Reusable assets"]
         A1["templates/"]
@@ -888,12 +959,12 @@ flowchart TD
 
 ---
 
-## 14. Validate the documentation
+## 16. Validate the documentation
 
 Every claim that can be machine-checked in this repository is checked.
 
 ```bash
-python3 docs/sdd/tools/validate_docs.py
+python3 tools/validate_docs.py
 ```
 
 | Check | What it verifies |
@@ -909,11 +980,11 @@ Optional, stronger check — parse every diagram with the real Mermaid parser:
 
 ```bash
 mkdir -p "$TMPDIR/mmcheck" && cd "$TMPDIR/mmcheck" && npm init -y && npm i mermaid@11 jsdom
-node <repo>/docs/sdd/tools/check_mermaid.mjs <repo>/docs/sdd "$TMPDIR/mmcheck/node_modules"
+node tools/check_mermaid.mjs . "$TMPDIR/mmcheck/node_modules"
 ```
 
-**Last verified: 2026-11-02** — 0 link errors, 0 table errors, 0 warnings, and **362/362 Mermaid
-diagrams parsed**. See [tools/README.md](docs/sdd/tools/README.md) for what each check proves and what
+**Last verified: 2026-11-02** — 0 link errors, 0 table errors, 0 warnings, and **399/399 Mermaid
+diagrams parsed**. See [tools/README.md](tools/README.md) for what each check proves and what
 it cannot.
 
 ---
@@ -930,7 +1001,7 @@ it cannot.
 | Git mode for this repository | **Mode 1** — documentation only, no automatic commits |
 
 Tool versions are verified snapshots (see the table in
-[docs/sdd/README.md](docs/sdd/README.md#6-verified-sources-and-research-date)); re-verify before
+[00-index.md](00-index.md#6-verified-sources-and-research-date)); re-verify before
 installing. External links point to official documentation and repositories; third-party content
 remains the property of its owners.
 

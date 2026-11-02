@@ -1,0 +1,23 @@
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDEs — workspace state is machine-local
+/.idea/*
+!/.idea/runConfigurations/
+/.vs/
+*.user
+*.suo
+
+# HTTP client secrets (the non-secret env file IS committed)
+http-client.private.env.json
+
+# Language tooling, if examples are ever run locally
+node_modules/
+.venv/
+__pycache__/
+dist/
+build/
+target/
+coverage/
